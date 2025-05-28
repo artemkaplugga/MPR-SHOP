@@ -1,0 +1,141 @@
+.header {
+    background: #fff;
+    max-width: 1440px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+}
+
+.header-top {
+    background: #e5262c;
+    color: #fff;
+    text-align: center;
+    font-size: 28px;
+    padding: 10px 0 8px 0;
+    font-weight: 400;
+}
+
+.header-main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 18px 32px 0 32px;
+}
+
+.header-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 100px;
+}
+
+.header-logo {
+    width: 80px;
+    height: auto;
+}
+
+.header-location {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.header-location img {
+    width: 28px;
+    height: 28px;
+}
+
+.header-city {
+    font-size: 18px;
+    font-weight: 500;
+    color: #222;
+}
+
+.header-delivery {
+    font-size: 14px;
+    color: #444;
+}
+
+.header-phone {
+    font-size: 24px;
+    font-weight: 400;
+    color: #111;
+    margin-top: 10px;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-top: 6px;
+}
+
+.header-icons img {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.header-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px 16px 32px;
+    background: #fff;
+    border-radius: 0 0 8px 8px;
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    background: #f6f6f6;
+    border-radius: 10px;
+   
+    width: 724px;
+    max-width: 724px;
+    padding: 15px 10px 15px 10px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.header-search input {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    flex: 1;
+    outline: none;
+    color: #888;
+    padding: 0 8px;
+}
+
+.header-search img {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.header-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-left: 0;
+}
+
+.header-link {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #222;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.header-link img {
+    width: 24px;
+    height: 24px;
+}
+
+.header {
+    overflow: visible;
+}
