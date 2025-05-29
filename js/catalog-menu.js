@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('catalogMenuBtn');
   const menu = document.getElementById('catalogDropdownMenu');
   const closeBtn = menu.querySelector('.catalog-menu-close');
-  if (!btn || !menu) return;
+  const moreLink = document.querySelector('.open-catalog-menu');
+
+  if (!menu) return;
 
   function openMenu() {
     menu.classList.add('open');
@@ -11,14 +13,24 @@ document.addEventListener('DOMContentLoaded', function() {
     menu.classList.remove('open');
   }
 
-  btn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    if (menu.classList.contains('open')) {
-      closeMenu();
-    } else {
+  if (btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (menu.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+  }
+
+  if (moreLink) {
+    moreLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       openMenu();
-    }
-  });
+    });
+  }
 
   if (closeBtn) {
     closeBtn.addEventListener('click', function(e) {
@@ -28,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   document.addEventListener('click', function(e) {
-    if (!menu.contains(e.target) && e.target !== btn) {
+    if (!menu.contains(e.target) && e.target !== btn && e.target !== moreLink) {
       closeMenu();
     }
   });
@@ -42,6 +54,18 @@ document.addEventListener('DOMContentLoaded', function() {
       // Здесь можно добавить подгрузку контента для правой части
     });
   });
+
+  // Открытие меню по клику на каждое слово (ссылку <a>) в главном меню (index.html)
+  const sidebarList = document.querySelector('.menu-categories__list');
+  if (sidebarList) {
+    const links = sidebarList.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        openMenu();
+      });
+    });
+  }
 
   // Активные табы
   const tabs = menu.querySelectorAll('.catalog-dropdown-menu__tabs .tab');
