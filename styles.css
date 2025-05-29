@@ -4,4 +4,12 @@
 @import "css/basic/_global.css";
 @import "css/vendor/_fonts.css";
 @import "css/index/_content.css";
-@import "css/index/_swiper.css"
+@import "css/index/_swiper.css";
+@import "css/catalog/_catalog.css";
+@import "css/catalog/catalog-menu.css";
+@import "css/product/_product.css";
+@import "css/favorites/_favorites.css";
+@import "css/stock/_stock.css";
+@import "css/contacts-inf/_contacts-inf.css";
+@import "css/bonus-program/_bonus-program.css";
+@import "css/about/_about.css";

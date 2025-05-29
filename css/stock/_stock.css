@@ -1,0 +1,64 @@
+/* Layout */
+.stocks-layout-row {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 32px;
+}
+.stocks-catalog-col {
+  min-width: 220px;
+  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.stocks-content-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-left: 32px;
+}
+.stocks-breadcrumbs {
+  color: #b3b3b3;
+  font-size: 16px;
+  margin-bottom: 8px;
+  margin-left: 2px;
+}
+.stocks-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+}
+.stocks-prices-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.stocks-price-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 16px;
+
+  display: block;
+}
+.stocks-subtitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+}
+.stocks-banners-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.stocks-banner-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+ 
+  display: block;
+}

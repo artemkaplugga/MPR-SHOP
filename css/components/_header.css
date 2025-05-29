@@ -125,10 +125,11 @@
 .header-link {
     display: flex;
     align-items: center;
-    font-size: 18px;
+    font-size: 20px;
     color: #222;
     gap: 6px;
     cursor: pointer;
+    position: relative;
 }
 
 .header-link img {
@@ -136,6 +137,76 @@
     height: 24px;
 }
 
+.header-link a {
+  text-decoration: none;
+  color: inherit; /* Inherit color from parent */
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Maintain spacing between icon and text */
+}
+
+.header-link span {
+  transition: color 0.15s;
+  font-weight: bold;
+}
+
+.dropdown-arrow {
+  margin-left: 4px; /* Adjust spacing as needed */
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.company-dropdown.open .dropdown-arrow {
+  transform: rotate(180deg); /* Rotate arrow when open */
+}
+
 .header {
     overflow: visible;
+}
+
+.header-city, .header-delivery, .header-phone, .header-link, .header-link span {
+  transition: color 0.15s;
+}
+.header-city, .header-delivery, .header-phone, .header-link {
+  cursor: pointer;
+}
+.header-city:hover, .header-delivery:hover, .header-phone:hover, .header-link:hover, .header-link:hover span {
+  color: #EB222D;
+}
+
+.company-dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Position below the "Компания" link */
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  min-width: 200px; /* Adjust width as needed */
+  border-radius: 8px;
+  padding: 10px 0;
+}
+
+.company-dropdown.open .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu ul li a {
+  color: #222;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.dropdown-menu ul li a:hover {
+  background-color: #f1f1f1;
 }
