@@ -256,3 +256,232 @@
   color: #111;
   margin-top: 8px;
 }
+
+@media (max-width: 375px) {
+  .favorites-layout-row {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .favorites-catalog-col {
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 10px;
+    align-items: stretch;
+  }
+  .favorites-content-col {
+    margin-left: 0;
+    width: 100%;
+  }
+  .favorites-header-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .favorites-header-title-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+    margin-bottom: 8px;
+  }
+  .favorites-title {
+    font-size: 18px;
+    margin: 0 0 6px 0;
+  }
+  .favorites-add-all-btn {
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+  .favorites-list {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 0;
+    align-items: stretch;
+  }
+  .favorites-card {
+    min-width: 0;
+    max-width: 100%;
+    padding: 10px 6px 10px 6px;
+    border-right: none;
+    border-bottom: 1px dotted #b3b3b3;
+    box-shadow: none;
+  }
+  .favorites-card:last-child {
+    border-bottom: none;
+  }
+  .favorites-card .special-like {
+    top: 4px;
+    right: 4px;
+  }
+  .favorites-card .special-like img {
+    width: 20px;
+    height: 20px;
+  }
+  .favorites-card .special-card__img {
+    height: 60px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+  }
+  .favorites-card .special-card__title {
+    font-size: 13px;
+    min-height: 20px;
+    margin-bottom: 2px;
+  }
+  .favorites-card .special-card__art {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+  .favorites-card .special-card__price {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 900px) {
+  .favorites-layout-row {
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .favorites-catalog-col {
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 12px;
+    align-items: stretch;
+  }
+  .favorites-content-col {
+    margin-left: 0;
+    width: 100%;
+  }
+  .favorites-header-row {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .favorites-header-title-row {
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .favorites-title {
+    font-size: 22px;
+    margin: 0 10px 0 0;
+  }
+  .favorites-add-all-btn {
+    font-size: 15px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .favorites-list {
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 0;
+    align-items: stretch;
+  }
+  .favorites-card {
+    min-width: 44vw;
+    max-width: 48vw;
+    padding: 10px 6px 10px 6px;
+    border-right: none;
+    border-bottom: 1px dotted #b3b3b3;
+    box-shadow: none;
+  }
+  .favorites-card:last-child {
+    border-bottom: none;
+  }
+  .favorites-card .special-like {
+    top: 6px;
+    right: 6px;
+  }
+  .favorites-card .special-like img {
+    width: 22px;
+    height: 22px;
+  }
+  .favorites-card .special-card__img {
+    height: 80px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+  }
+  .favorites-card .special-card__title {
+    font-size: 15px;
+    min-height: 24px;
+    margin-bottom: 2px;
+  }
+  .favorites-card .special-card__art {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+  .favorites-card .special-card__price {
+    font-size: 16px;
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .favorites-header-title-row {
+    flex-direction: column;
+    gap: 6px;
+    align-items: stretch;
+    margin-bottom: 6px;
+  }
+  .favorites-title {
+    font-size: 16px;
+    margin: 0 0 4px 0;
+  }
+  .favorites-add-all-btn {
+    font-size: 13px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+  }
+  .favorites-list {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 0;
+    align-items: stretch;
+  }
+  .favorites-card {
+    min-width: 0;
+    max-width: 100%;
+    padding: 8px 4px 8px 4px;
+    border-right: none;
+    border-bottom: 1px dotted #b3b3b3;
+    box-shadow: none;
+  }
+  .favorites-card:last-child {
+    border-bottom: none;
+  }
+  .favorites-card .special-like {
+    top: 3px;
+    right: 3px;
+  }
+  .favorites-card .special-like img {
+    width: 18px;
+    height: 18px;
+  }
+  .favorites-card .special-card__img {
+    height: 48px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+  }
+  .favorites-card .special-card__title {
+    font-size: 11px;
+    min-height: 14px;
+    margin-bottom: 1px;
+  }
+  .favorites-card .special-card__art {
+    font-size: 9px;
+    margin-bottom: 1px;
+  }
+  .favorites-card .special-card__price {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+}

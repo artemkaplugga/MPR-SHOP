@@ -62,3 +62,48 @@
  
   display: block;
 }
+
+@media (max-width: 900px) {
+  .stocks-layout-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .stocks-catalog-col {
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 18px;
+    align-items: stretch;
+  }
+  .stocks-content-col {
+    margin-left: 0;
+    width: 100%;
+  }
+  .stocks-prices-row {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+ 
+  .stocks-banners-row {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .stocks-title {
+    font-size: 22px;
+  }
+  .stocks-subtitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .stocks-title {
+    font-size: 16px;
+  }
+  .stocks-subtitle {
+    font-size: 13px;
+  }
+}
