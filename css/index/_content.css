@@ -89,6 +89,11 @@
   object-fit: cover;
   display: block;
   background: #f6f6f6;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.catalog-grid__item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .special-section {
@@ -1121,3 +1126,254 @@
   transform: translateY(0);
 }
 
+@media (max-width: 1024px) {
+  .catalog-content {
+    gap: 16px;
+  }
+  .catalog-main-block {
+    margin-left: 16px;
+  }
+  .catalog-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+  .catalog-grid__item {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog-content {
+    flex-direction: column;
+    gap: 16px; /* Keep some gap for spacing */
+  }
+  .menu-categories {
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    margin-bottom: 16px; /* Add space below menu */
+  }
+  .catalog-main-block {
+    margin-left: 0;
+    width: 100%;
+    flex-direction: column; /* Stack banner and grid */
+    gap: 16px; /* Space between banner and grid */
+  }
+  .catalog-banner-swiper {
+     width: 100%;
+  }
+  .catalog-banner {
+    width: 100%;
+    height: auto;
+  }
+  .catalog-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 16px;
+  }
+  .catalog-grid__item {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalog-content {
+    gap: 12px;
+  }
+   .menu-categories {
+    margin-bottom: 12px;
+  }
+  .catalog-main-block {
+    gap: 12px;
+  }
+  .catalog-grid {
+    gap: 12px;
+  }
+   .menu-categories__list li {
+     padding: 6px 12px;
+     font-size: 16px;
+     gap: 8px;
+   }
+    .menu-categories__list img {
+      width: 20px;
+      height: 20px;
+    }
+}
+
+@media (max-width: 375px) {
+   .catalog-content {
+    gap: 8px;
+  }
+   .menu-categories {
+    margin-bottom: 8px;
+    padding: 12px 0;
+  }
+  .catalog-main-block {
+    gap: 8px;
+  }
+  .catalog-grid {
+    gap: 8px;
+  }
+   .menu-categories__list li {
+     padding: 4px 8px;
+     font-size: 14px;
+     gap: 6px;
+   }
+    .menu-categories__list img {
+      width: 18px;
+      height: 18px;
+    }
+}
+
+/* Responsive adjustments for Special Section and cards */
+@media (max-width: 768px) {
+  .special-section {
+    padding: 24px 0 0 0; /* Adjust padding if needed */
+  }
+
+  .special-header h2 {
+    font-size: 36px; /* Slightly smaller font size */
+  }
+
+  .special-list {
+    gap: 16px; /* Reduce gap between cards */
+    padding-bottom: 12px; /* Adjust padding */
+  }
+
+  .special-card {
+    flex: 0 0 180px; /* Reduce card width */
+    padding: 14px 10px 14px 10px; /* Adjust padding */
+    padding-bottom: 60px; /* Adjust bottom padding */
+  }
+
+  .special-card__img {
+    margin-bottom: 8px; /* Reduce margin */
+  }
+
+  .special-card__title {
+    font-size: 18px; /* Reduce font size */
+    min-height: 44px; /* Adjust min height */
+    margin-bottom: 4px; /* Reduce margin */
+  }
+
+  .special-card__art {
+    font-size: 15px; /* Reduce font size */
+    margin-bottom: 8px; /* Reduce margin */
+  }
+
+  .special-card__price {
+    font-size: 20px; /* Reduce font size */
+  }
+
+  .special-card__cart {
+    height: 40px; /* Reduce button height */
+    font-size: 16px; /* Reduce font size */
+    bottom: 12px; /* Adjust position */
+  }
+}
+
+@media (max-width: 480px) {
+  .special-header h2 {
+    font-size: 28px; /* Further reduce font size */
+  }
+
+  .special-list {
+    gap: 12px; /* Further reduce gap */
+    padding-bottom: 10px; /* Adjust padding */
+  }
+
+  .special-card {
+    flex: 0 0 160px; /* Further reduce card width */
+    padding: 10px 8px 10px 8px; /* Adjust padding */
+    padding-bottom: 50px; /* Adjust bottom padding */
+  }
+
+  .special-card__img {
+    margin-bottom: 6px; /* Reduce margin */
+  }
+
+  .special-card__title {
+    font-size: 16px; /* Further reduce font size */
+    min-height: 40px; /* Adjust min height */
+    margin-bottom: 3px; /* Reduce margin */
+  }
+
+  .special-card__art {
+    font-size: 14px; /* Further reduce font size */
+    margin-bottom: 6px; /* Reduce margin */
+  }
+
+  .special-card__price {
+    font-size: 18px; /* Further reduce font size */
+  }
+
+  .special-card__cart {
+    height: 36px; /* Further reduce button height */
+    font-size: 15px; /* Further reduce font size */
+    bottom: 10px; /* Adjust position */
+  }
+}
+
+@media (max-width: 375px) {
+  .special-section {
+    padding: 20px 0 0 0; /* Adjust padding if needed */
+  }
+  
+  .special-header h2 {
+    font-size: 24px; /* Smallest font size */
+  }
+
+  .special-list {
+    gap: 10px; /* Smallest gap */
+    padding-bottom: 8px; /* Adjust padding */
+  }
+
+  .special-card {
+    flex: 0 0 140px; /* Smallest card width */
+    padding: 8px 6px 8px 6px; /* Smallest padding */
+    padding-bottom: 45px; /* Smallest bottom padding */
+  }
+
+  .special-card__img {
+    margin-bottom: 4px; /* Smallest margin */
+  }
+
+  .special-card__title {
+    font-size: 14px; /* Smallest font size */
+    min-height: 36px; /* Adjust min height */
+    margin-bottom: 2px; /* Smallest margin */
+  }
+
+  .special-card__art {
+    font-size: 12px; /* Smallest font size */
+    margin-bottom: 4px; /* Smallest margin */
+  }
+
+  .special-card__price {
+    font-size: 16px; /* Smallest font size */
+  }
+
+  .special-card__cart {
+    height: 32px; /* Smallest button height */
+    font-size: 14px; /* Smallest font size */
+    bottom: 8px; /* Smallest position */
+  }
+}
+
+.hits-section {
+  overflow: hidden;
+}
+
+.swiper-wrapper {
+  overflow: hidden;
+}
+.fixed-prices-section {
+  overflow: hidden;
+}
+
+.top-section {
+  overflow: hidden;
+}

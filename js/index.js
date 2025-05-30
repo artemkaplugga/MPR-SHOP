@@ -8,6 +8,76 @@ const swiper = new Swiper('.special-swiper', {
   },
   allowTouchMove: false,
   simulateTouch: false,
+  breakpoints: {
+    1920: {
+      slidesPerView: 6,
+      slidesPerGroup: 4,
+      spaceBetween: 0,
+    },
+   
+    768: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
+   
+  
+    },
+    480: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+   
+    },
+    375: {
+      slidesPerView: 1.5,
+      slidesPerGroup: 1,
+    
+    },
+    320: {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+   
+    }
+  }
+});
+const topSwiper = new Swiper('.top-swiper', {
+  slidesPerView: 6,
+  slidesPerGroup: 4,
+  spaceBetween: 0,
+  navigation: {
+    nextEl: '.special-next',
+    prevEl: '.special-prev',
+  },
+  allowTouchMove: false,
+  simulateTouch: false,
+  breakpoints: {
+    
+    1920: {
+      slidesPerView: 6,
+      slidesPerGroup: 4,
+      spaceBetween: 0,
+    },
+   
+    768: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
+   
+  
+    },
+    480: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+   
+    },
+    375: {
+      slidesPerView: 1.5,
+      slidesPerGroup: 1,
+    
+    },
+    320: {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+   
+    }
+  }
 });
 
 const hitsSwiper = new Swiper('.hits-swiper', {
@@ -19,6 +89,42 @@ const hitsSwiper = new Swiper('.hits-swiper', {
   },
   allowTouchMove: false,
   simulateTouch: false,
+  breakpoints: {
+    1920: {
+      slidesPerView: 6,
+      slidesPerGroup: 4,
+      spaceBetween: 0,
+    },
+   
+    768: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
+      spaceBetween: 16,
+      allowTouchMove: true,
+      simulateTouch: true,
+    },
+    480: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 12,
+      allowTouchMove: true,
+      simulateTouch: true,
+    },
+    375: {
+      slidesPerView: 1.5,
+      slidesPerGroup: 1,
+      spaceBetween: 10,
+      allowTouchMove: true,
+      simulateTouch: true,
+    },
+    320: {
+      slidesPerView: 1.2,
+      slidesPerGroup: 1,
+      spaceBetween: 8,
+      allowTouchMove: true,
+      simulateTouch: true,
+    }
+  }
 });
 
 const fixedSwiper = new Swiper('.fixed-swiper', {
@@ -30,6 +136,42 @@ const fixedSwiper = new Swiper('.fixed-swiper', {
   },
   allowTouchMove: false,
   simulateTouch: false,
+  breakpoints: {
+    1920: {
+      slidesPerView: 6,
+      slidesPerGroup: 4,
+      spaceBetween: 0,
+    },
+   
+    768: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
+      spaceBetween: 18,
+      allowTouchMove: true,
+      simulateTouch: true,
+    },
+    480: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 10,
+      allowTouchMove: true,
+      simulateTouch: true,
+    },
+    375: {
+      slidesPerView: 1.5,
+      slidesPerGroup: 1,
+      spaceBetween: 10,
+      allowTouchMove: true,
+      simulateTouch: true,
+    },
+    320: {
+      slidesPerView: 1.2,
+      slidesPerGroup: 1,
+      spaceBetween: 8,
+      allowTouchMove: true,
+      simulateTouch: true,
+    }
+  }
 });
 
 // Main screen swiper
@@ -43,6 +185,13 @@ const mainSwiper = new Swiper('.main-swiper', {
     nextEl: '.main-swiper .swiper-button-next',
     prevEl: '.main-swiper .swiper-button-prev',
   },
+  breakpoints: {
+  
+    768: {
+       slidesPerView: 1,
+       loop: true,
+    },
+  }
 });
 
 // Catalog banner swiper
@@ -59,6 +208,14 @@ const catalogBannerSwiper = new Swiper('.catalog-banner-swiper', {
     nextEl: '.catalog-swiper-button-next',
     prevEl: '.catalog-swiper-button-prev',
   },
+  breakpoints: {
+   
+  
+    768: {
+       slidesPerView: 1,
+       loop: true,
+    },
+  }
 });
 
 const scrollToTopBtn = document.getElementById('scrollToTopBtn');
@@ -73,4 +230,23 @@ scrollToTopBtn.addEventListener('click', function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+  const burger = document.getElementById("burger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeBtn = document.getElementById("closeBtn");
+
+  burger.addEventListener("click", () => {
+    mobileMenu.classList.add("active");
+  }, { passive: true });
+
+  closeBtn.addEventListener("click", () => {
+    mobileMenu.classList.remove("active");
+  }, { passive: true });
+
+  document.querySelectorAll(".mobile-menu-links a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+    }, { passive: true });
+  }); 
+});
 

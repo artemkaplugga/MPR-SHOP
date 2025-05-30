@@ -182,6 +182,27 @@
   line-height: 1.15;
 }
 
+.catalog-main-btn {
+  display: block;
+  width: fit-content;
+  padding: 15px 30px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #222;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  margin-bottom: 24px; /* Add some space below the button */
+}
+
+.catalog-main-btn:hover {
+  background-color: #EB222D;
+  color: #fff;
+  border-color: #EB222D;
+}
+
 @media (max-width: 1200px) {
   .catalog-categories-grid {
     grid-template-columns: repeat(4, 1fr);
