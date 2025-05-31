@@ -109,52 +109,121 @@
         </div>
         <header class="header">
             <div class="header-top">Магазин постоянных распродаж</div>
+          
             <div class="header-main">
-                <div class="header-left">
-                    <a href="index.html">
-                        <img src="images/components/logo.svg" class="header-logo" alt="Logo">
-                    </a>
-                    <div class="header-location">
-                        <img src="images/components/placemark 1.svg" alt="Location">
-                        <div>
-                            <div class="header-city">Ваш город Майкоп</div>
-                            <div class="header-delivery">Способ доставки</div>
-                        </div>
-                    </div>
+              <div class="header-left">
+                <a href="index.html"><img src="images/components/logo.svg" class="header-logo" alt="Logo"></a>
+                <div class="header-location">
+                  <img src="images/components/placemark 1.svg" alt="Location">
+                  <div>
+                    <div class="header-city">Ваш город Майкоп</div>
+                    <div class="header-delivery" id="openDeliveryModal">Способ доставки</div>
+                  </div>
                 </div>
-                <div class="header-phone">8 8772 56 50 00</div>
-                <div class="header-icons">
-                    <img src="images/components/auth-icon 1.svg" alt="Auth">
-                    <img src="images/components/like-icon 1.svg" alt="Like">
-                    <img src="images/components/cart-icon 1.svg" alt="Cart">
-                </div>
+              </div>
+          
+              <div class="header-phone">8 8772 56 50 00</div>
+          
+              <div class="header-icons">
+                <img src="images/components/auth-icon 1.svg" alt="Auth">
+                <a href="favorites.html"><img src="images/components/like-icon 1.svg" alt="Like"></a>
+                <img src="images/components/cart-icon 1.svg" alt="Cart">
+                <div class="burger" id="burger">&#9776;</div>
+              </div>
             </div>
+          
+            <div class="header-mobile-bottom-bar">
+              <div class="header-search header-search-mobile">
+                <input type="text" placeholder="Поиск">
+                <img src="images/components/search-icon 1.svg" alt="Search">
+              </div>
+            </div>
+          
             <div class="header-bottom">
-                <div class="header-search">
-                    <input type="text" placeholder="Поиск">
-                    <img src="images/components/search-icon 1.svg" alt="Search">
+              <div class="header-search">
+                <input type="text" placeholder="Поиск">
+                <img src="images/components/search-icon 1.svg" alt="Search">
+              </div>
+              <div class="header-links">
+                <div class="header-link">
+                  <a href="stocks.html">
+                    <img src="images/components/percent-icon 1.svg" alt="Акции">
+                    <span>Акции</span>
+                  </a>
                 </div>
-                <div class="header-links">
-                    <div class="header-link">
-                        <a href="stocks.html">
-                            <img src="images/components/percent-icon 1.svg" alt="Акции">
-                            <span>Акции</span>
-                        </a>
-                    </div>
-                    <div class="header-link company-dropdown">
-                        <img src="images/components/company-icon 1.svg" alt="Компания">
-                        <span>Компания</span>
-                        <div class="dropdown-menu">
-                            <ul>
-                                <li><a href="about.html">О магазинах</a></li>
-                                <li><a href="contacts-inf.html">Контакты</a></li>
-                                <li><a href="bonus-program.html">Бонусная программа</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="header-link company-dropdown">
+                  <img src="images/components/company-icon 1.svg" alt="Компания">
+                  <span>Компания</span>
+                  <span class="dropdown-arrow">&#9660;</span>
+                  <div class="dropdown-menu">
+                    <ul>
+                      <li><a href="about.html">О магазинах</a></li>
+                      <li><a href="contacts-inf.html">Контакты</a></li>
+                      <li><a href="bonus-program.html">Бонусная программа</a></li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
             </div>
-        </header>
+          </header>
+    
+    
+    
+    
+    
+    
+          
+    
+    
+    
+    
+    
+    
+    
+          
+          <!-- 📱 Мобильное меню -->
+          <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+              <a href="index.html"><img src="images/components/logo.svg" class="header-logo" alt="Logo"></a>
+             
+              <button class="close-btn" id="closeBtn">&times;</button>
+            </div>
+          
+            <div class="mobile-menu-links">
+          
+              <div class="mobile-menu-section">
+              
+              </div>
+          
+              <div class="mobile-menu-section">
+                <a href="stocks.html">Акции</a>
+                <a href="about.html">О магазинах</a>
+                <a href="contacts-inf.html">Контакты</a>
+                <a href="bonus-program.html">Бонусная программа</a>
+              </div>
+          
+              <div class="mobile-menu-section">
+                <div class="header-phone">8 8772 56 50 00</div>
+              </div>
+          
+              <div class="mobile-menu-section">
+                <div class="header-location">
+                  <img src="images/components/placemark 1.svg" alt="Location">
+                  <div>
+                    <div class="header-city">Ваш город Майкоп</div>
+                    <div class="header-delivery" id="openDeliveryModal">Способ доставки</div>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="mobile-menu-section">
+                
+              </div>
+          
+            </div>
+          </div>
+          
+          
         <div class="catalog-section">
             <aside class="catalog-sidebar">
                 <button class="catalog-sidebar__btn" id="catalogMenuBtn">
@@ -430,5 +499,6 @@
     <script src="js/catalog-pagination.js"></script>
     <script src="js/catalog-menu.js"></script>
     <script src="js/modals.js"></script>
+    <script src="js/mobile-menu.js"></script>
 </body>
 </html>
