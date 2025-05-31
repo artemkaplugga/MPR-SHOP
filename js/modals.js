@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Модалка способа доставки
     const openDeliveryBtn = document.getElementById('openDeliveryModal');
+    const mobileOpenDeliveryBtn = document.querySelector('.mobile-menu #openDeliveryModal');
     const deliveryModal = document.getElementById('modalDelivery');
     const deliveryOverlay = document.getElementById('modalDeliveryOverlay');
     const deliveryClose = document.getElementById('modalDeliveryClose');
@@ -59,6 +60,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (openDeliveryBtn) {
       openDeliveryBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openDeliveryModal();
+      });
+    }
+    if (mobileOpenDeliveryBtn) {
+      mobileOpenDeliveryBtn.addEventListener('click', function(e) {
         e.preventDefault();
         openDeliveryModal();
       });
@@ -137,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Modal City Select ---
     const headerCity = document.querySelector('.header-city');
+    const mobileHeaderCity = document.querySelector('.mobile-menu .header-city');
     const modalCity = document.getElementById('modalCity');
     const modalCityOverlay = document.getElementById('modalCityOverlay');
     const modalCityClose = document.getElementById('modalCityClose');
@@ -154,6 +162,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (headerCity) {
       headerCity.addEventListener('click', openCityModal);
+    }
+    if (mobileHeaderCity) {
+      mobileHeaderCity.addEventListener('click', openCityModal);
     }
     if (modalCityClose) {
       modalCityClose.addEventListener('click', closeCityModal);

@@ -45,17 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Активные категории
+ 
   const cats = menu.querySelectorAll('.catalog-dropdown-menu__categories li');
   cats.forEach(cat => {
     cat.addEventListener('click', function() {
       cats.forEach(c => c.classList.remove('active'));
       this.classList.add('active');
-      // Здесь можно добавить подгрузку контента для правой части
+   
     });
   });
 
-  // Открытие меню по клику на каждое слово (ссылку <a>) в главном меню (index.html)
+ 
   const sidebarList = document.querySelector('.menu-categories__list');
   if (sidebarList) {
     const links = sidebarList.querySelectorAll('a');
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Активные табы
+  
   const tabs = menu.querySelectorAll('.catalog-dropdown-menu__tabs .tab');
   tabs.forEach(tab => {
     tab.addEventListener('click', function() {

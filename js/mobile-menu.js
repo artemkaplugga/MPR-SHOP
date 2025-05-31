@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   const burger = document.getElementById("burger");
   const mobileMenu = document.getElementById("mobileMenu");
   const closeBtn = document.getElementById("closeBtn");
 
-  if (burger && mobileMenu && closeBtn) { // Проверяем, что элементы существуют
+  if (burger && mobileMenu && closeBtn) {
     burger.addEventListener("click", () => {
       mobileMenu.classList.add("active");
     }, { passive: true });
@@ -17,7 +17,5 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileMenu.classList.remove("active");
       }, { passive: true });
     });
-  } else {
-    console.error("Не найдены элементы для мобильного меню");
   }
 });
