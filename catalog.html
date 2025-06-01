@@ -497,6 +497,133 @@
             </div>
         </div>
     </footer>
+    <!-- Модальное окно авторизации -->
+    <div class="modal-auth-overlay" id="modalAuthOverlay" style="display:none;"></div>
+    <div class="modal-auth" id="modalAuth" style="display:none;">
+      <button class="modal-auth-close" id="modalAuthClose" aria-label="Закрыть">×</button>
+      <div class="modal-auth-title">Вход</div>
+      <form class="modal-auth-form">
+        <input type="email" class="modal-auth-input" placeholder="Email">
+        <input type="password" class="modal-auth-input" placeholder="Пароль">
+        <div class="modal-auth-row">
+          <label class="modal-auth-checkbox-label">
+            <input type="checkbox" class="modal-auth-checkbox" checked>
+            <span class="modal-auth-checkbox-custom"></span>
+            Запомнить меня
+          </label>
+          <a href="#" class="modal-auth-forgot">Забыли пароль?</a>
+        </div>
+        <button type="submit" class="modal-auth-btn">Войти</button>
+      </form>
+      <div class="modal-auth-bottom-text"><a class="modal-auth-register" href="registration.html">Зарегистрироваться</span> <span class="modal-auth-bottom-or">или войти с помощью</span></div>
+      <div class="modal-auth-socials">
+        <a href="#" class="modal-auth-social"><img src="images/index/icon_ok.png" alt="ok"></a>
+        <a href="#" class="modal-auth-social"><img src="images/index/icon_yandex.png" alt="ya"></a>
+        <a href="#" class="modal-auth-social"><img src="images/index/icon_vk.png" alt="vk"></a>
+        <a href="#" class="modal-auth-social"><img src="images/index/icon_mail.png" alt="mailru"></a>
+      </div>
+    </div>
+    <!-- Модальное окно способа доставки -->
+    <div class="modal-delivery-overlay" id="modalDeliveryOverlay" style="display:none;"></div>
+    <div class="modal-delivery" id="modalDelivery" style="display:none;">
+      <button class="modal-delivery-close" id="modalDeliveryClose" aria-label="Закрыть">×</button>
+      <div class="modal-delivery-title">Способ получения заказа</div>
+      <div class="modal-delivery-desc">Выберите, чтобы увидеть актуальный ассортимент, цены и минимальную сумму заказа.</div>
+      <div class="modal-delivery-warning">Внимание! При изменении типа доставки некоторые товары в вашей корзине могут оказаться недоступными, так как ассортимент в наших магазинах может различаться.</div>
+      <div class="modal-delivery-tabs">
+        <button class="modal-delivery-tab active" id="deliveryTabDelivery">Доставка</button>
+        <button class="modal-delivery-tab" id="deliveryTabPickup">Самовывоз</button>
+      </div>
+      <!-- Контент для Доставки -->
+      <div class="modal-delivery-content" id="deliveryContent" style="display:block;">
+        <div class="modal-delivery-info">Доставка бесплатна всегда, минимальный заказ — 3000 ₽</div>
+        <input type="text" class="modal-delivery-input" placeholder="Адрес">
+        <div class="modal-delivery-note">Имеются ограничения на доставку крупногабаритных товаров.<br>Подробности уточняйте у сотрудников магазина.</div>
+        <button class="modal-delivery-save">Сохранить</button>
+        <div class="modal-delivery-map" id="modalDeliveryMap">
+          <iframe src="https://yandex.ru/map-widget/v1/?ll=40.103643%2C44.609825&z=12" width="100%"" height="220px" frameborder="0" allowfullscreen="true" style="border-radius:12px; position:relative;"></iframe>
+        </div>
+      </div>
+      <!-- Контент для Самовывоза -->
+      <div class="modal-delivery-content" id="pickupContent" style="display:none;">
+        <div class="modal-pickup-dropdown-wrap">
+          <div class="modal-pickup-dropdown" id="pickupDropdown">
+            <div class="modal-pickup-selected" id="pickupSelected">Ейское шоссе, 1/5</div>
+            <div class="modal-pickup-list" id="pickupList" style="display:none;">
+              <div class="modal-pickup-item selected">Ейское шоссе, 1/5</div>
+              <div class="modal-pickup-item">Карасунская улица, 86</div>
+              <div class="modal-pickup-item">Октябрьская улица, 177</div>
+              <div class="modal-pickup-item">проспект Чекистов, 36</div>
+              <div class="modal-pickup-item">улица Атарбекова, 5</div>
+              <div class="modal-pickup-item">улица Ставропольская, 140</div>
+              <div class="modal-pickup-item">улица Стасова, 163/2</div>
+              <div class="modal-pickup-item">улица имени В.М. Комарова, 32</div>
+            </div>
+          </div>
+        </div>
+        <button class="modal-delivery-save modal-pickup-save">Сохранить</button>
+        <div class="modal-delivery-map" id="modalPickupMap">
+          <iframe src="https://yandex.ru/map-widget/v1/?ll=38.976,45.035&z=12" width="100%"" height="220px" frameborder="0" allowfullscreen="true" style="border-radius:12px; position:relative;"></iframe>
+        </div>
+      </div>
+    </div>
+    <!-- Модальное окно выбора города -->
+    <div class="modal-city-overlay" id="modalCityOverlay" style="display:none;"></div>
+    <div class="modal-city" id="modalCity" style="display:none;">
+      <button class="modal-city-close" id="modalCityClose" aria-label="Закрыть">×</button>
+      <div class="modal-city-title">Выбор города</div>
+      <div class="modal-city-desc">Выберите город или введите название в поле ниже</div>
+      <div class="modal-city-search-wrap">
+        <input type="text" class="modal-city-search" id="modalCitySearch" placeholder=" ">
+        <img src="images/components/search-icon 1.svg" class="modal-city-search-icon" alt="Поиск">
+      </div>
+      <div class="modal-city-columns">
+        <div class="modal-city-col" id="cityColDistrict">
+          <div class="modal-city-col-title">Округ</div>
+          <div class="modal-city-col-list">
+            <div class="modal-city-col-item">Абхазия</div>
+            <div class="modal-city-col-item">Армения</div>
+            <div class="modal-city-col-item">Дальневосточный</div>
+            <div class="modal-city-col-item">Казахстан</div>
+            <div class="modal-city-col-item">Крымский</div>
+            <div class="modal-city-col-item">Приволжский</div>
+            <div class="modal-city-col-item">Северо-Западный</div>
+            <div class="modal-city-col-item">Северо-Кавказский</div>
+            <div class="modal-city-col-item">Сибирский</div>
+            <div class="modal-city-col-item">Уральский</div>
+            <div class="modal-city-col-item">Центральный</div>
+            <div class="modal-city-col-item selected">Южный</div>
+          </div>
+        </div>
+        <div class="modal-city-col" id="cityColRegion">
+          <div class="modal-city-col-title">Регион</div>
+          <div class="modal-city-col-list">
+            <div class="modal-city-col-item">Волгоградская область</div>
+            <div class="modal-city-col-item selected">Краснодарский край</div>
+            <div class="modal-city-col-item">Республика Адыгея</div>
+            <div class="modal-city-col-item">Республика Калмыкия</div>
+            <div class="modal-city-col-item">Ростовская область</div>
+          </div>
+        </div>
+        <div class="modal-city-col" id="cityColCity">
+          <div class="modal-city-col-title">Город</div>
+          <div class="modal-city-col-list">
+            <div class="modal-city-col-item">Абинск</div>
+            <div class="modal-city-col-item">Белореченск</div>
+            <div class="modal-city-col-item">Варениковская</div>
+            <div class="modal-city-col-item">Горячий Ключ</div>
+            <div class="modal-city-col-item selected">Краснодар</div>
+            <div class="modal-city-col-item">Кропоткин</div>
+            <div class="modal-city-col-item">Крымск</div>
+            <div class="modal-city-col-item">Ленинградская</div>
+            <div class="modal-city-col-item">Новороссийск</div>
+            <div class="modal-city-col-item">Сочи</div>
+            <div class="modal-city-col-item">Старотитаровская</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <script src="js/catalog-pagination.js"></script>
     <script src="js/catalog-menu.js"></script>
     <script src="js/modals.js"></script>
