@@ -1,0 +1,227 @@
+.review-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.review-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  max-width: 500px; /* Adjust as needed */
+  width: 90%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+}
+
+.review-modal-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+}
+
+.review-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.review-modal-label {
+  font-size: 16px;
+  color: #444;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.review-modal-input,
+.review-modal-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.review-modal-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.review-modal-checkbox-label,
+.review-modal-terms-label {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #444;
+  cursor: pointer;
+}
+
+.review-modal-checkbox,
+.review-modal-terms-checkbox {
+  display: none;
+}
+
+.review-modal-checkbox-custom,
+.review-modal-terms-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5262c;
+  border-radius: 4px;
+  margin-right: 8px;
+  display: inline-block;
+  position: relative;
+}
+
+.review-modal-checkbox:checked + .review-modal-checkbox-custom,
+.review-modal-terms-checkbox:checked + .review-modal-terms-custom {
+  background-color: #e5262c;
+}
+
+.review-modal-checkbox:checked + .review-modal-checkbox-custom::after,
+.review-modal-terms-checkbox:checked + .review-modal-terms-custom::after {
+  content: '\2713'; /* Checkmark character */
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.review-modal-rating {
+  font-size: 28px;
+  color: #ddd; /* Default star color */
+  cursor: pointer;
+}
+
+.review-modal-rating .star.selected {
+  color: gold; /* Selected star color */
+}
+
+.review-modal-terms-label a {
+  color: #e5262c;
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.review-modal-btn {
+  background-color: #e5262c;
+  color: #fff;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-modal-btn:hover {
+  background-color: #c02020;
+}
+
+/* Styles for the review display */
+#reviews-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.no-reviews {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.review-card {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.review-header {
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.review-rating {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.review-comment {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .review-modal {
+    padding: 20px;
+  }
+
+  .review-modal-title {
+    font-size: 24px;
+  }
+
+  .review-modal-input,
+  .review-modal-textarea,
+  .review-modal-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .review-modal-label,
+  .review-modal-checkbox-label,
+  .review-modal-terms-label {
+    font-size: 12px;
+  }
+
+  .review-modal-checkbox-custom,
+  .review-modal-terms-custom {
+    width: 16px;
+    height: 16px;
+  }
+
+  .review-modal-checkbox:checked + .review-modal-checkbox-custom::after,
+  .review-modal-terms-checkbox:checked + .review-modal-terms-custom::after {
+    font-size: 12px;
+  }
+
+  .review-modal-rating {
+    font-size: 24px;
+  }
+} 

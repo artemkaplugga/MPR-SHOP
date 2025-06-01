@@ -265,10 +265,14 @@
             <div class="product-tab-content product-tab-content--reviews" style="display:none">
               <div class="product-reviews-header">
                 <span class="product-reviews-count">0 отзывов</span>
+                
                 <button class="product-reviews-new-btn">Новый отзыв</button>
               </div>
+              <div id="reviews-container"></div>
             </div>
+          
           </div>
+       
         <section class="special-section">
             <div class="special-header">
               <h2>Специально для вас</h2>
@@ -566,6 +570,7 @@
      <script src="js/modals.js"></script>
      <script src="js/catalog-menu.js"></script>
     <script src="js/tab-product.js"></script>
+    <script src="js/feedback.js"></script>
    
     
    
@@ -671,23 +676,33 @@
         </div>
     </div>
     <!-- Модальное окно авторизации -->
-    <div class="modal-auth-overlay" id="modalAuthOverlay" style="display:none;"></div>
-    <div class="modal-auth" id="modalAuth" style="display:none;">
-      <button class="modal-auth-close" id="modalAuthClose" aria-label="Закрыть">×</button>
-      <div class="modal-auth-title">Вход</div>
-      <form class="modal-auth-form">
-        <input type="email" class="modal-auth-input" placeholder="Email">
-        <input type="password" class="modal-auth-input" placeholder="Пароль">
-        <div class="modal-auth-row">
-          <label class="modal-auth-checkbox-label">
-            <input type="checkbox" class="modal-auth-checkbox" checked>
-            <span class="modal-auth-checkbox-custom"></span>
-            Запомнить меня
-          </label>
-          <a href="#" class="modal-auth-forgot">Забыли пароль?</a>
-        </div>
-        <button type="submit" class="modal-auth-btn">Войти</button>
-      </form>
+  <div class="modal-auth-overlay" id="modalAuthOverlay" style="display:none;"></div>
+  <div class="modal-auth" id="modalAuth" style="display:none;">
+    <button class="modal-auth-close" id="modalAuthClose" aria-label="Закрыть">×</button>
+    <div class="modal-auth-title">Вход</div>
+    <form class="modal-auth-form" action="/login" method="POST">
+      <input type="email" name="email" class="modal-auth-input" placeholder="Email">
+      <input type="password" name="password" class="modal-auth-input" placeholder="Пароль">
+      
+      <div class="modal-auth-row">
+        <label class="modal-auth-checkbox-label">
+          <input type="checkbox" name="remember" class="modal-auth-checkbox" checked>
+          <span class="modal-auth-checkbox-custom"></span>
+          Запомнить меня
+        </label>
+        <a href="#" class="modal-auth-forgot">Забыли пароль?</a>
+      </div>
+      <button type="submit" class="modal-auth-btn">Войти</button>
+    </form>
+    <div class="modal-auth-bottom-text"><a class="modal-auth-register" href="registration.html">Зарегистрироваться</a> <span
+        class="modal-auth-bottom-or">или войти с помощью</span></div>
+    <div class="modal-auth-socials">
+      <a href="#" class="modal-auth-social"><img src="images/index/icon_ok.png" alt="ok"></a>
+      <a href="#" class="modal-auth-social"><img src="images/index/icon_yandex.png" alt="ya"></a>
+      <a href="#" class="modal-auth-social"><img src="images/index/icon_vk.png" alt="vk"></a>
+      <a href="#" class="modal-auth-social"><img src="images/index/icon_mail.png" alt="mailru"></a>
+    </div>
+  </div>
       <div class="modal-auth-bottom-text"><a class="modal-auth-register" href="registration.html">Зарегистрироваться</a> <span class="modal-auth-bottom-or">или войти с помощью</span></div>
       <div class="modal-auth-socials">
         <a href="#" class="modal-auth-social"><img src="images/index/icon_ok.png" alt="ok"></a>
@@ -796,6 +811,42 @@
         </div>
       </div>
     </div>
+    <!-- Модальное окно нового отзыва -->
+    <div class="review-modal-overlay" id="modalReviewOverlay" style="display:none;"></div>
+    <div class="review-modal" id="modalReview" style="display:none;">
+      <button class="review-modal-close" id="modalReviewClose" aria-label="Закрыть">×</button>
+      <div class="review-modal-title">Новый отзыв</div>
+      <form class="review-modal-form">
+        <label class="review-modal-label">ВАШЕ ИМЯ</label>
+        <input type="text" class="review-modal-input" placeholder="">
+        <label class="review-modal-checkbox-label">
+          <input type="checkbox" class="review-modal-checkbox">
+          <span class="review-modal-checkbox-custom"></span>
+          Отправить анонимно
+        </label>
+        <label class="review-modal-label">E-MAIL</label>
+        <input type="email" class="review-modal-input" placeholder="">
+        <label class="review-modal-label">ОЦЕНКА</label>
+        <div class="review-modal-rating">
+          <span class="star" data-value="1">&#9733;</span>
+          <span class="star" data-value="2">&#9733;</span>
+          <span class="star" data-value="3">&#9733;</span>
+          <span class="star" data-value="4">&#9733;</span>
+          <span class="star" data-value="5">&#9733;</span>
+        </div>
+        <label class="review-modal-label">КОММЕНТАРИЙ</label>
+        <textarea class="review-modal-textarea"></textarea>
+        <div class="review-modal-recaptcha">
+          <!-- hCaptcha will be inserted here -->
+        </div>
+        <label class="review-modal-terms-label">
+          <input type="checkbox" class="review-modal-terms-checkbox">
+          <span class="review-modal-terms-custom"></span>
+          Я принимаю условия "<a href="#">Политики обработки персональных данных</a>" и даю своё согласие на обработку сведений, содержащих мои персональные данные в соответствии с Федеральным законом "<a href="#">О персональных данных</a>" от 27 июля 2006г. № 152-ФЗ и принятых в соответствии с указанным законом нормативных актов.
+        </label>
+        <button type="submit" class="review-modal-btn">Опубликовать</button>
+      </form>
+    </div>
     <script src="js/mobile-menu.js"></script>
     <div id="user-greeting"></div>
     <script>
@@ -809,22 +860,22 @@
             const modalAuth = document.getElementById('modalAuth');
             const modalOverlay = document.getElementById('modalAuthOverlay');
             const authButton = greetingContainer.querySelector('.auth-button'); // Try to get the button if it exists
-
+      
             if (modalAuth) modalAuth.style.display = 'none';
             if (modalOverlay) modalOverlay.style.display = 'none';
             if (authButton) authButton.style.display = 'none'; // Explicitly hide the button if found
-
+      
             // Скрываем иконку входа и показываем кнопку выхода
             const authIcon = document.getElementById('authIcon');
             const logoutLink = document.getElementById('logoutLink');
             if (authIcon) authIcon.style.display = 'none';
             if (logoutLink) logoutLink.style.display = 'block';
-
+      
             // Показываем приветствие
             greetingContainer.innerHTML = `
               <div class="profile-greeting">
                 Привет, ${user.name} ${user.surname}!
-                <a href="/logout">Выход</a>
+                
               </div>
             `;
           } else {
@@ -833,16 +884,11 @@
             const logoutLink = document.getElementById('logoutLink');
             if (authIcon) authIcon.style.display = 'block';
             if (logoutLink) logoutLink.style.display = 'none';
-
-            greetingContainer.innerHTML = `
-              <button onclick="document.getElementById('modalAuth').style.display = 'block';
-                              document.getElementById('modalAuthOverlay').style.display = 'block';"
-                      class="auth-button">
-                Войти
-              </button>
-            `;
+      
+           
           }
         });
       </script>
+     
 </body>
 </html>

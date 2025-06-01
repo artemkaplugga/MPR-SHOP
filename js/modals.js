@@ -6,7 +6,22 @@ if (companyDropdown) {
   });
 }
 
+// Functions moved to global scope
+function openReviewModal() {
+  const modalReview = document.getElementById('modalReview');
+  const modalReviewOverlay = document.getElementById('modalReviewOverlay');
+  if (modalReview) modalReview.style.display = 'flex';
+  if (modalReviewOverlay) modalReviewOverlay.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
 
+function closeReviewModal() {
+  const modalReview = document.getElementById('modalReview');
+  const modalReviewOverlay = document.getElementById('modalReviewOverlay');
+  if (modalReview) modalReview.style.display = 'none';
+  if (modalReviewOverlay) modalReviewOverlay.style.display = 'none';
+  document.body.style.overflow = '';
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     const authBtn = document.querySelector('.header-icons img[alt="Auth"]');
@@ -187,5 +202,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }
+
+    // --- New Review Modal ---
+    const openReviewBtn = document.querySelector('.product-reviews-new-btn');
+    const modalReview = document.getElementById('modalReview');
+    const modalReviewOverlay = document.getElementById('modalReviewOverlay');
+    const modalReviewClose = document.getElementById('modalReviewClose');
+    const reviewStars = modalReview ? modalReview.querySelectorAll('.review-modal-rating .star') : [];
+
+    if (openReviewBtn) {
+      openReviewBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openReviewModal();
+      });
+    }
+
+    if (modalReviewClose) {
+      modalReviewClose.addEventListener('click', closeReviewModal);
+    }
+
+    if (modalReviewOverlay) {
+      modalReviewOverlay.addEventListener('click', closeReviewModal);
+    }
+
+    // Star rating functionality
+    reviewStars.forEach(star => {
+      star.addEventListener('click', function() {
+        const value = parseInt(this.dataset.value);
+        reviewStars.forEach((s, index) => {
+          if (index < value) {
+            s.classList.add('selected');
+          } else {
+            s.classList.remove('selected');
+          }
+        });
+      });
+    });
   });
   
