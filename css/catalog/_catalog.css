@@ -251,6 +251,9 @@
     min-width: 80px;
     aspect-ratio: 2.2/1;
   }
+  .catalog-sidebar {
+    flex-direction: column;
+  }
 }
 
 .catalog-products-grid {

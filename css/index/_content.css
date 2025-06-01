@@ -1563,7 +1563,8 @@ flex-direction: column;
 }
 
 .catalog-main-btn {
-  display: block;
+  display: flex;
+  align-items: center;
   width: fit-content;
   padding: 15px 30px;
   font-size: 24px;
@@ -1574,7 +1575,8 @@ flex-direction: column;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  margin-bottom: 24px; /* Add some space below the button */
+  margin-bottom: 24px;
+  text-decoration: none;
 }
 
 

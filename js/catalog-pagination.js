@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const page2HTML = `
     <div class="special-card">
       <img class="special-card__img" src="images/Products/1 (52).jpg" alt="Товар 2-1">
-      <button class="special-like"><img src="images/components/like-icon 1.svg" alt="like"></button>
+      <button class="special-like"><img src="images/components/like.svg" alt="like"></button>
       <div class="special-card__title">Товар страницы 2 — пример</div>
       <div class="special-card__art">Арт.: 222-222</div>
       <div class="special-card__price">999 руб./шт.</div>
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="special-card">
       <img class="special-card__img" src="images/Products/1 (1).jpg" alt="Товар 2-2">
-      <button class="special-like"><img src="images/components/like-icon 1.svg" alt="like"></button>
+      <button class="special-like"><img src="images/components/like.svg" alt="like"></button>
       <div class="special-card__title">Второй товар страницы 2</div>
       <div class="special-card__art">Арт.: 222-223</div>
       <div class="special-card__price">888 руб./шт.</div>
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const page3HTML = `
     <div class="special-card">
       <img class="special-card__img" src="images/Products/1 (3).jpg" alt="Товар 3-1">
-      <button class="special-like"><img src="images/components/like-icon 1.svg" alt="like"></button>
+      <button class="special-like"><img src="images/components/like.svg" alt="like"></button>
       <div class="special-card__title">Товар страницы 3 — пример</div>
       <div class="special-card__art">Арт.: 333-333</div>
       <div class="special-card__price">777 руб./шт.</div>
