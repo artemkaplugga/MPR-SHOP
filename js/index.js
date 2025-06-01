@@ -199,7 +199,7 @@ const mainSwiper = new Swiper('.main-swiper', {
 const catalogBannerSwiper = new Swiper('.catalog-banner-swiper', {
   slidesPerView: 1,
   slidesPerGroup: 1,
-  spaceBetween: 30,
+  spaceBetween: 1000,
   loop: true,
   pagination: {
     el: '.catalog-swiper-pagination',
@@ -210,12 +210,14 @@ const catalogBannerSwiper = new Swiper('.catalog-banner-swiper', {
     prevEl: '.catalog-swiper-button-prev',
   },
   breakpoints: {
-   
-  
     768: {
        slidesPerView: 1,
        loop: true,
     },
+  },
+  autoplay: {
+    delay: 2000,
+    disableOnInteraction: false
   }
 });
 
