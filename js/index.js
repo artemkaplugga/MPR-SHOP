@@ -38,13 +38,14 @@ const swiper = new Swiper('.special-swiper', {
     }
   }
 });
+
 const topSwiper = new Swiper('.top-swiper', {
   slidesPerView: 6,
   slidesPerGroup: 4,
   spaceBetween: 0,
   navigation: {
-    nextEl: '.special-next',
-    prevEl: '.special-prev',
+    nextEl: '.top-next',
+    prevEl: '.top-prev',
   },
   allowTouchMove: false,
   simulateTouch: false,

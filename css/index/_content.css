@@ -157,10 +157,7 @@
   padding: 0;
 }
 
-.special-like img {
-  width: 26px;
-  height: 26px;
-}
+
 
 .special-card__title {
   font-size: 20px;
@@ -1585,4 +1582,14 @@ flex-direction: column;
   background-color: #EB222D;
   color: #fff;
   border-color: #EB222D;
+}
+
+.special-card-link {
+  text-decoration: none;
+}
+
+@media (max-width: 428px) {
+  .fixed-prices-filters {
+    flex-direction: column;
+  }
 }
