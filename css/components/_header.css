@@ -215,13 +215,33 @@
   background-color: #f1f1f1;
 }
 
+/* Logout Button styles */
+.logoutBtn {
+  font-size: 18px;
+  font-weight: 500;
+  color: #222;
+  text-decoration: none;
+  padding: 10px 5px;
+  box-sizing: border-box; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  border: 1px solid transparent; 
+  border-radius: 5px; 
+  border-color: #EB222D;
+  transition: color 0.15s, border-color 0.15s;
+}
 
+.logoutBtn:hover {
+  color: #EB222D;
+  background-color: #EB222D; color: white;
+}
 
-
-
-
-
-
+#authToggleContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between auth icon and logout link */
+}
 
 /* ========== Основной стиль мобильного меню ========== */
 
