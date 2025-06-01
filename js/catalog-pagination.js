@@ -1,7 +1,7 @@
 // catalog-pagination.js
 // Рабочая пагинация с разным контентом для каждой страницы
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const productsList = document.getElementById('catalog-products-list');
   const pagination = document.querySelector('.catalog-pagination');
   if (!productsList || !pagination) return;
@@ -735,7 +735,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const pages = [page1HTML, page2HTML, page3HTML];
 
   pageButtons.forEach((btn, idx) => {
-    btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', function (e) {
       e.preventDefault();
       pageButtons.forEach(b => b.classList.remove('catalog-pagination__page--active'));
       this.classList.add('catalog-pagination__page--active');
