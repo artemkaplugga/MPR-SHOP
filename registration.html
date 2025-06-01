@@ -457,13 +457,7 @@
             if (authIcon) authIcon.style.display = 'none';
             if (logoutLink) logoutLink.style.display = 'block';
 
-            // Показываем приветствие
-            greetingContainer.innerHTML = `
-              <div class="profile-greeting">
-                Привет, ${user.name} ${user.surname}!
-                <a href="/logout">Выход</a>
-              </div>
-            `;
+         
           } else {
             // Показываем иконку входа и скрываем кнопку выхода
             const authIcon = document.getElementById('authIcon');

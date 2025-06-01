@@ -703,14 +703,6 @@
       <a href="#" class="modal-auth-social"><img src="images/index/icon_mail.png" alt="mailru"></a>
     </div>
   </div>
-      <div class="modal-auth-bottom-text"><a class="modal-auth-register" href="registration.html">Зарегистрироваться</a> <span class="modal-auth-bottom-or">или войти с помощью</span></div>
-      <div class="modal-auth-socials">
-        <a href="#" class="modal-auth-social"><img src="images/index/icon_ok.png" alt="ok"></a>
-        <a href="#" class="modal-auth-social"><img src="images/index/icon_yandex.png" alt="ya"></a>
-        <a href="#" class="modal-auth-social"><img src="images/index/icon_vk.png" alt="vk"></a>
-        <a href="#" class="modal-auth-social"><img src="images/index/icon_mail.png" alt="mailru"></a>
-      </div>
-    </div>
     <!-- Модальное окно способа доставки -->
     <div class="modal-delivery-overlay" id="modalDeliveryOverlay" style="display:none;"></div>
     <div class="modal-delivery" id="modalDelivery" style="display:none;">
@@ -871,13 +863,8 @@
             if (authIcon) authIcon.style.display = 'none';
             if (logoutLink) logoutLink.style.display = 'block';
       
-            // Показываем приветствие
-            greetingContainer.innerHTML = `
-              <div class="profile-greeting">
-                Привет, ${user.name} ${user.surname}!
-                
-              </div>
-            `;
+          
+          
           } else {
             // Показываем иконку входа и скрываем кнопку выхода
             const authIcon = document.getElementById('authIcon');
