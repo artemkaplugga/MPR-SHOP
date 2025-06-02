@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" a href="styles.css">
     <link rel="stylesheet" href="css/catalog/catalog-menu.css">
+    <link rel="stylesheet" href="css/components/_cart-dropdown.css">
 </head>
 <body>
     <div class="catalog-dropdown-menu" id="catalogDropdownMenu">
@@ -130,7 +131,15 @@
               <a class="logoutBtn" href="/logout" id="logoutLink">Выйти</a>
             </div>
             <a href="favorites.html"><img src="images/components/like-icon 1.svg" alt="Like"></a>
-            <img src="images/components/cart-icon 1.svg" alt="Cart">
+            <img src="images/components/cart-icon 1.svg" alt="Cart" id="cartIcon">
+            <div class="cart-dropdown" id="cartDropdown">
+              <div class="cart-dropdown-content">
+                <p class="cart-empty">Корзина пуста</p>
+                <div class="cart-items-container"></div>
+                <div class="cart-total">Итого: 0,00 руб.</div>
+                <button class="cart-dropdown__checkout-btn">В корзину</button>
+              </div>
+            </div>
             <div class="burger" id="burger">&#9776;</div>
           </div>
         </div>
@@ -289,8 +298,10 @@
           </div>
         </div>
       </footer>
-    <script src="js/modals.js"></script>
+    <script src="js/mobile-menu.js"></script>
     <script src="js/catalog-menu.js"></script>
+    <div id="user-greeting"></div>
+    <script src="js/modals.js"></script>
     <!-- Модальное окно авторизации -->
     <div class="modal-auth-overlay" id="modalAuthOverlay" style="display:none;"></div>
     <div class="modal-auth" id="modalAuth" style="display:none;">
@@ -417,8 +428,6 @@
         </div>
       </div>
     </div>
-    <script src="js/mobile-menu.js"></script>
-    <div id="user-greeting"></div>
     <script>
       fetch('/api/user')
         .then(response => response.json())

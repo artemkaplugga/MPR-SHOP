@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="css/catalog/catalog-menu.css">
     <link rel="stylesheet" href="css/catalog/_catalog.css">
+    <link rel="stylesheet" href="css/components/_cart-dropdown.css">
 </head>
 <body>
     <div class="container">
@@ -131,7 +132,15 @@
                   <a class="logoutBtn" href="/logout" id="logoutLink">Выйти</a>
                 </div>
                 <a href="favorites.html"><img src="images/components/like-icon 1.svg" alt="Like"></a>
-                <img src="images/components/cart-icon 1.svg" alt="Cart">
+                <img src="images/components/cart-icon 1.svg" alt="Cart" id="cartIcon">
+                <div class="cart-dropdown" id="cartDropdown">
+                  <div class="cart-dropdown-content">
+                    <p class="cart-empty">Корзина пуста</p>
+                    <div class="cart-items-container"></div>
+                    <div class="cart-total">Итого: 0,00 руб.</div>
+                    <button class="cart-dropdown__checkout-btn">В корзину</button>
+                  </div>
+                </div>
                 <div class="burger" id="burger">&#9776;</div>
               </div>
             </div>

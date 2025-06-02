@@ -1,0 +1,125 @@
+.cart-dropdown {
+  position: absolute;
+  top: 100%; 
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  border-color: #EB222D;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px; 
+  padding: 20px;
+  z-index: 1000; 
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: none; 
+}
+
+.cart-dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+  display: block; 
+}
+
+.cart-dropdown-content {
+  text-align: center;
+}
+
+.cart-empty {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.cart-total {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.cart-items-container {
+  max-height: 300px; /* Limit height to enable scrolling */
+  overflow-y: auto; /* Add scroll for many items */
+  margin-bottom: 15px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item__img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.cart-item__details {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.cart-item__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.cart-item__art {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.cart-item__price {
+  font-size: 14px;
+  font-weight: bold;
+  color: #EB222D; /* Red color for price */
+}
+
+.cart-item__remove {
+  background: none;
+  border: none;
+  color: #EB222D; /* Red color for remove button */
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 0 5px;
+  transition: color 0.2s ease;
+}
+
+.cart-item__remove:hover {
+  color: #c00;
+}
+
+.cart-dropdown__checkout-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #EB222D;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 20px; /* Add some space from total */
+}
+
+.cart-dropdown__checkout-btn:hover {
+  background-color: #c00;
+} 

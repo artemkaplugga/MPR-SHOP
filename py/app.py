@@ -42,6 +42,58 @@ def init_db():
         conn.commit()
         conn.close()
 
+# Cart management (new)
+@app.route('/api/cart', methods=['GET', 'POST'])
+def handle_cart():
+    if 'user_id' not in session: # Add authentication check
+        return jsonify({'status': 'error', 'message': 'Пользователь не авторизован'}), 401
+
+    if request.method == 'GET':
+        cart_items = session.get('cart_items', [])
+        return jsonify(cart_items)
+    
+    elif request.method == 'POST':
+        data = request.get_json()
+        item = {
+            'image': data['image'],
+            'title': data['title'],
+            'art': data['art'],
+            'price': data['price']
+        }
+        cart_items = session.get('cart_items', [])
+        
+        # Check if item already exists based on art number
+        existing_item_index = -1
+        for i, cart_item in enumerate(cart_items):
+            if cart_item['art'] == item['art']:
+                existing_item_index = i
+                break
+
+        if existing_item_index == -1: # If not found, add new item
+            cart_items.append(item)
+            session['cart_items'] = cart_items
+            return jsonify({'status': 'added', 'cart_items': cart_items})
+        else:
+            return jsonify({'status': 'already_in_cart', 'cart_items': cart_items})
+
+@app.route('/api/cart/remove', methods=['POST'])
+def remove_from_cart():
+    if 'user_id' not in session: # Add authentication check
+        return jsonify({'status': 'error', 'message': 'Пользователь не авторизован'}), 401
+
+    data = request.get_json()
+    art_to_remove = data['art']
+    
+    cart_items = session.get('cart_items', [])
+    initial_len = len(cart_items)
+    cart_items = [item for item in cart_items if item['art'] != art_to_remove]
+    
+    if len(cart_items) < initial_len: # Item was removed
+        session['cart_items'] = cart_items
+        return jsonify({'status': 'removed', 'cart_items': cart_items})
+    else:
+        return jsonify({'status': 'not_found', 'cart_items': cart_items})
+
 # Главная страница
 @app.route('/')
 def home():

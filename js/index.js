@@ -27,7 +27,7 @@ const swiper = new Swiper('.special-swiper', {
    
     },
     375: {
-      slidesPerView: 1.5,
+      slidesPerView: 1,
       slidesPerGroup: 1,
     
     },
@@ -221,16 +221,15 @@ const catalogBannerSwiper = new Swiper('.catalog-banner-swiper', {
   }
 });
 
-const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-window.addEventListener('scroll', function() {
-  if (window.scrollY > 200) {
-    scrollToTopBtn.classList.add('show');
-  } else {
-    scrollToTopBtn.classList.remove('show');
-  }
-});
-scrollToTopBtn.addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+const likeButtons = document.querySelectorAll('.special-like');
 
-
+likeButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    const img = this.querySelector('img');
+    if (img.src.includes('like.svg') && !img.src.includes('like-active.svg')) {
+      img.src = 'images/components/like-active.svg';
+    } else {
+      img.src = 'images/components/like.svg';
+    }
+  });
+});

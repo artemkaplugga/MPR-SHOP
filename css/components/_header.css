@@ -69,6 +69,7 @@
     align-items: center;
     gap: 32px;
     margin-top: 6px;
+    position: relative;
 }
 
 .header-icons img {
