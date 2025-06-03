@@ -333,7 +333,6 @@
   cursor: pointer;
   background: none;
   border: none;
-  margin-left: 16px;
   z-index: 1100;
   order: 2; /* Move burger to the right within header-icons */
 }
