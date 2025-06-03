@@ -112,14 +112,14 @@ const hitsSwiper = new Swiper('.hits-swiper', {
       simulateTouch: true,
     },
     375: {
-      slidesPerView: 1.5,
+      slidesPerView: 1,
       slidesPerGroup: 1,
       spaceBetween: 10,
       allowTouchMove: true,
       simulateTouch: true,
     },
     320: {
-      slidesPerView: 1.2,
+      slidesPerView: 1,
       slidesPerGroup: 1,
       spaceBetween: 8,
       allowTouchMove: true,
@@ -159,14 +159,14 @@ const fixedSwiper = new Swiper('.fixed-swiper', {
       simulateTouch: true,
     },
     375: {
-      slidesPerView: 1.5,
+      slidesPerView: 1,
       slidesPerGroup: 1,
       spaceBetween: 10,
       allowTouchMove: true,
       simulateTouch: true,
     },
     320: {
-      slidesPerView: 1.2,
+      slidesPerView: 1,
       slidesPerGroup: 1,
       spaceBetween: 8,
       allowTouchMove: true,
