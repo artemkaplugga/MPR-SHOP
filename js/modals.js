@@ -24,16 +24,16 @@ function closeReviewModal() {
 }
 
 document.addEventListener('DOMContentLoaded', async function () {
-  let isLoggedIn = false; // Declare isLoggedIn here
+  let isLoggedIn = localStorage.getItem('currentUser') !== null; // Determine login status from localStorage
 
-  // Fetch user status
-  try {
-    const response = await fetch('/api/user');
-    const data = await response.json();
-    isLoggedIn = data.logged_in;
-  } catch (error) {
-    console.error('Error fetching user status:', error);
-  }
+  // No longer fetching user status from backend
+  // try {
+  //   const response = await fetch('/api/user');
+  //   const data = await response.json();
+  //   isLoggedIn = data.logged_in;
+  // } catch (error) {
+  //   console.error('Error fetching user status:', error);
+  // }
 
     const authBtn = document.querySelector('.header-icons img[alt="Auth"]');
     const modal = document.getElementById('modalAuth');
@@ -214,6 +214,58 @@ document.addEventListener('DOMContentLoaded', async function () {
       });
     }
 
+  // Update UI based on login status
+  function updateAuthUI() {
+    if (isLoggedIn) {
+      // User is logged in
+      const currentUserEmail = localStorage.getItem('currentUser');
+      const users = JSON.parse(localStorage.getItem('users')) || {};
+      const currentUser = users[currentUserEmail];
+
+      if (currentUser) {
+        document.getElementById('user-greeting').innerHTML = `
+          <div class="profile-greeting">
+            Привет, ${currentUser.name} ${currentUser.surname}!
+          </div>
+        `;
+      }
+
+      // Hide auth icon and show logout link
+      if (document.getElementById('authIcon')) document.getElementById('authIcon').style.display = 'none';
+      if (document.getElementById('logoutLink')) document.getElementById('logoutLink').style.display = 'block';
+    } else {
+      // User is not logged in
+      // Show auth icon and hide logout link
+      if (document.getElementById('authIcon')) document.getElementById('authIcon').style.display = 'block';
+      if (document.getElementById('logoutLink')) document.getElementById('logoutLink').style.display = 'none';
+
+      // Display the "Войти" button
+      document.getElementById('user-greeting').innerHTML = `
+        <button onclick="document.getElementById('modalAuth').style.display = 'block';
+                        document.getElementById('modalAuthOverlay').style.display = 'block';"
+                class="auth-button">
+          Войти
+        </button>
+      `;
+    }
+  }
+
+  // Initial UI update
+  updateAuthUI();
+
+  // Add logout functionality (this part is already handled by js/login.js but keeping it for completeness in modals.js context)
+  const logoutLink = document.getElementById('logoutLink');
+  if (logoutLink) {
+      logoutLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          localStorage.removeItem('currentUser');
+          alert('Вы вышли из аккаунта.');
+          isLoggedIn = false; // Update isLoggedIn status
+          updateAuthUI();
+          window.location.href = 'index.html';
+      });
+  }
+
   // --- New Review Modal ---
   const openReviewBtn = document.querySelector('.product-reviews-new-btn');
   const modalReview = document.getElementById('modalReview');
@@ -222,12 +274,16 @@ document.addEventListener('DOMContentLoaded', async function () {
   const reviewStars = modalReview ? modalReview.querySelectorAll('.review-modal-rating .star') : [];
 
   if (openReviewBtn) {
+    // Cursor style and click event for review button (using isLoggedIn from localStorage)
     if (!isLoggedIn) {
       openReviewBtn.style.cursor = 'not-allowed';
+    } else {
+      openReviewBtn.style.cursor = 'pointer'; // Ensure it's clickable if logged in
     }
+
     openReviewBtn.addEventListener('click', function (e) {
       e.preventDefault();
-      if (!isLoggedIn) {
+      if (!localStorage.getItem('currentUser')) { // Check localStorage directly for auth
         alert('Для оставления отзыва необходимо авторизоваться.');
         openAuthModal();
         return;
@@ -244,10 +300,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     modalReviewOverlay.addEventListener('click', closeReviewModal);
   }
 
-  // Star rating functionality
+  // Star rating functionality (using isLoggedIn from localStorage)
   reviewStars.forEach(star => {
     star.addEventListener('click', function () {
-      if (!isLoggedIn) return; // Prevent rating if not logged in
+      if (!localStorage.getItem('currentUser')) return; // Prevent rating if not logged in
       const value = parseInt(this.dataset.value);
       reviewStars.forEach((s, index) => {
         if (index < value) {
@@ -259,82 +315,100 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
   });
 
-  // Like functionality
-  const likeButtons = document.querySelectorAll('.special-like');
+  // Like functionality (This logic should ideally be in js/favorites.js, but removing server interaction)
+  const likeButtons = document.querySelectorAll('.special-like, .sport-card__like');
 
   // Function to update the like button's image based on its liked status
-  function updateLikeButton(button, isLiked) {
+  function updateLikeButton(button, isFav) {
     const img = button.querySelector('img');
-    if (isLiked) {
-      img.src = 'images/components/like-active.svg';
-    } else {
-      img.src = 'images/components/like.svg';
+    if (img) {
+      img.src = isFav ? 'images/components/like-active.svg' : 'images/components/like.svg';
     }
   }
 
   likeButtons.forEach(button => {
-    const card = button.closest('.special-card');
+    const card = button.closest('.special-card, .sport-card');
     if (!card) return; // Skip if no parent card found
-    const artElement = card.querySelector('.special-card__art');
-    if (!artElement) return; // Skip if no article number found
-    const artNumber = artElement.textContent.replace('Арт.: ', '').trim();
+    
+    const productTitleElement = card.querySelector('.special-card__title, .sport-card__info .sport-card__title');
+    const productImageElement = card.querySelector('.special-card__img, .sport-card__img');
+    const productPriceElement = card.querySelector('.special-card__price, .sport-card__price');
+
+    if (!productTitleElement || !productImageElement || !productPriceElement) return;
+
+    const productTitle = productTitleElement.textContent.trim();
+    const productImageSrc = productImageElement.src;
+    const productPrice = productPriceElement.textContent.trim();
+
+    let productArt = '';
+    const specialCardArtElement = card.querySelector('.special-card__art');
+    if (specialCardArtElement) {
+        productArt = specialCardArtElement.textContent.trim().replace('Арт.: ', '');
+    } else {
+        // For sport-card, use a combination of title and imageSrc as a unique identifier
+        productArt = `${productTitle}-${productImageSrc}`; // This will be the unique identifier for removal
+    }
+
+    const product = { title: productTitle, imageSrc: productImageSrc, price: productPrice, art: productArt };
+
+    // Set data-art attribute on the button to ensure it's available for `favorites-page.js`
+    button.dataset.art = productArt; 
 
     // Check initial state from localStorage only if logged in
-    if (isLoggedIn) {
-      const likedProducts = JSON.parse(localStorage.getItem('likedProducts') || '[]');
-      if (likedProducts.includes(artNumber)) {
+    if (localStorage.getItem('currentUser')) {
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      if (favorites.some(item => item.art === product.art)) { // Changed to use product.art for comparison
         updateLikeButton(button, true);
       }
     } else {
-      // If not logged in, ensure the like icon is always the default one
       updateLikeButton(button, false);
       button.style.cursor = 'not-allowed'; // Indicate it's not clickable
     }
 
     button.addEventListener('click', function(e) {
-      if (!isLoggedIn) {
+      if (!localStorage.getItem('currentUser')) { // Check localStorage directly for auth
         e.preventDefault(); // Prevent default action
         alert('Для добавления в избранное необходимо авторизоваться.');
         openAuthModal(); // Open auth modal
         return;
       }
 
-      let currentLikedProducts = JSON.parse(localStorage.getItem('likedProducts') || '[]');
+      let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      const index = favorites.findIndex(item => item.art === product.art); // Changed to use product.art for comparison
 
-      if (currentLikedProducts.includes(artNumber)) {
-        // Product is currently liked, so unlike it
-        currentLikedProducts = currentLikedProducts.filter(item => item !== artNumber);
+      if (index !== -1) {
+        // Product is currently favorited, so unfavorite it
+        favorites.splice(index, 1);
         updateLikeButton(this, false);
       } else {
-        // Product is not liked, so like it
-        currentLikedProducts.push(artNumber);
+        // Product is not favorited, so favorite it
+        favorites.push(product);
         updateLikeButton(this, true);
+        alert('Товар добавлен в избранное!');
       }
-      localStorage.setItem('likedProducts', JSON.stringify(currentLikedProducts));
+      localStorage.setItem('favorites', JSON.stringify(favorites));
     });
   });
 
-  // Cart functionality
+  // Cart functionality (This logic should ideally be in js/cart.js, but removing server interaction)
   const cartIcon = document.getElementById('cartIcon');
   const cartDropdown = document.getElementById('cartDropdown');
-  const cartContent = cartDropdown ? cartDropdown.querySelector('.cart-items-container') : null;
+  const cartItemsContainer = cartDropdown ? cartDropdown.querySelector('.cart-items-container') : null;
   const cartEmptyMessage = cartDropdown ? cartDropdown.querySelector('.cart-empty') : null;
-  const cartTotal = cartDropdown ? cartDropdown.querySelector('.cart-total') : null;
-  const addToCartButtons = document.querySelectorAll('.special-card__cart');
+  const cartTotalElement = cartDropdown ? cartDropdown.querySelector('.cart-total') : null;
+  const addToCartButtons = document.querySelectorAll('.special-card__cart, .sport-card__cart');
 
-  async function updateCartDisplay() {
-    if (!isLoggedIn) {
-      if (cartContent) cartContent.innerHTML = ''; // Clear items container
-      if (cartEmptyMessage) cartEmptyMessage.style.display = 'block'; // Show empty message
-      if (cartTotal) cartTotal.textContent = 'Итого: 0,00 руб.'; // Reset total
-      console.log('Cart display not updated: User not logged in.');
-      return;
-    }
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+  }
 
-    const response = await fetch('/api/cart');
-    const cartItems = await response.json();
-    
-    if (cartContent) cartContent.innerHTML = ''; // Clear only items container
+  function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  function updateCartDisplay() {
+    const cartItems = getCart();
+    if (cartItemsContainer) cartItemsContainer.innerHTML = ''; // Clear items container
     let total = 0;
 
     if (cartItems.length === 0) {
@@ -354,28 +428,32 @@ document.addEventListener('DOMContentLoaded', async function () {
             <div class="cart-item__title">${item.title}</div>
             <div class="cart-item__art">${item.art}</div>
             <div class="cart-item__price">${item.price}</div>
+            <div class="cart-item__quantity-controls">
+              <button class="cart-item__quantity-minus" data-art="${item.art}">-</button>
+              <span class="cart-item__quantity">${item.quantity}</span>
+              <button class="cart-item__quantity-plus" data-art="${item.art}">+</button>
+            </div>
           </div>
           <button class="cart-item__remove" data-art="${item.art}">×</button>
         `;
-        if (cartContent) {
-          cartContent.appendChild(itemElement);
+        if (cartItemsContainer) {
+          cartItemsContainer.appendChild(itemElement);
         }
 
-        // Calculate total price
         const priceValue = parseFloat(item.price.replace('от ', '').replace(' руб./шт.', '').replace(',', '.'));
         if (!isNaN(priceValue)) {
-          total += priceValue;
+          total += priceValue * item.quantity;
         }
       });
     }
-    if (cartTotal) {
-      cartTotal.textContent = `Итого: ${total.toFixed(2).replace('.', ',')} руб.`;
+    if (cartTotalElement) {
+      cartTotalElement.textContent = `Итого: ${total.toFixed(2).replace('.', ',')} руб.`;
     }
 
     // Show/hide checkout button
     const checkoutButton = cartDropdown ? cartDropdown.querySelector('.cart-dropdown__checkout-btn') : null;
     if (checkoutButton) {
-      if (isLoggedIn && cartItems.length > 0) {
+      if (localStorage.getItem('currentUser') && cartItems.length > 0) {
         checkoutButton.style.display = 'block';
       } else {
         checkoutButton.style.display = 'none';
@@ -387,71 +465,75 @@ document.addEventListener('DOMContentLoaded', async function () {
   updateCartDisplay();
 
   addToCartButtons.forEach(button => {
-    if (!isLoggedIn) {
+    if (!localStorage.getItem('currentUser')) {
       button.style.cursor = 'not-allowed';
+    } else {
+      button.style.cursor = 'pointer';
     }
-    button.addEventListener('click', async function(e) {
-      if (!isLoggedIn) {
+
+    button.addEventListener('click', function(e) {
+      if (!localStorage.getItem('currentUser')) { // Check localStorage directly for auth
         e.preventDefault();
         alert('Для добавления товара в корзину необходимо авторизоваться.');
         openAuthModal();
         return;
       }
 
-      const card = this.closest('.special-card');
-      const image = card.querySelector('.special-card__img').src;
-      const title = card.querySelector('.special-card__title').textContent.trim();
-      const art = card.querySelector('.special-card__art').textContent.replace('Арт.: ', '').trim();
-      const price = card.querySelector('.special-card__price').textContent.trim();
+      const card = this.closest('.special-card, .sport-card');
+      const image = card.querySelector('.special-card__img, .sport-card__img').src;
+      const title = card.querySelector('.special-card__title, .sport-card__info .sport-card__title').textContent.trim();
+      const art = card.querySelector('.special-card__art, .sport-card__info .sport-card__title').textContent.replace('Арт.: ', '').trim();
+      const price = card.querySelector('.special-card__price, .sport-card__price').textContent.trim();
 
-      const newItem = { image, title, art, price };
+      let cart = getCart();
+      const existingItemIndex = cart.findIndex(item => item.art === art);
 
-      const response = await fetch('/api/cart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newItem)
-      });
-      const result = await response.json();
-
-      if (result.status === 'added') {
-        console.log('Item added to cart:', result.cart_items);
-        updateCartDisplay();
-      } else if (result.status === 'already_in_cart') {
-        console.log('Item already in cart:', result.cart_items);
-      } else if (result.status === 'error' && result.message === 'Пользователь не авторизован') {
-        alert('Для добавления товара в корзину необходимо авторизоваться.');
-        openAuthModal();
+      if (existingItemIndex !== -1) {
+        // If item exists, increase quantity
+        cart[existingItemIndex].quantity = (cart[existingItemIndex].quantity || 1) + 1; 
+      } else {
+        // If item does not exist, add it with quantity 1
+        cart.push({ image, title, art, price, quantity: 1 });
       }
+      saveCart(cart);
+      updateCartDisplay();
+      alert('Товар добавлен в корзину!');
     });
   });
 
-  // Event listener for removing items from cart
-  if (cartContent) {
-    cartContent.addEventListener('click', async function(event) {
-      if (!isLoggedIn) return; // Prevent removal if not logged in
+  // Event listener for removing items from cart and quantity changes
+  if (cartItemsContainer) {
+    cartItemsContainer.addEventListener('click', function(event) {
+      if (!localStorage.getItem('currentUser')) return; // Prevent action if not logged in
 
-      if (event.target.classList.contains('cart-item__remove')) {
-        const artToRemove = event.target.dataset.art;
-        
-        const response = await fetch('/api/cart/remove', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ art: artToRemove })
-        });
-        const result = await response.json();
-
-        if (result.status === 'removed') {
-          console.log('Item removed from cart:', result.cart_items);
+      const target = event.target;
+      if (target.classList.contains('cart-item__remove')) {
+        const artToRemove = target.dataset.art;
+        let cart = getCart();
+        cart = cart.filter(item => item.art !== artToRemove);
+        saveCart(cart);
+        updateCartDisplay();
+      } else if (target.classList.contains('cart-item__quantity-minus')) {
+        const artToUpdate = target.dataset.art;
+        let cart = getCart();
+        const itemIndex = cart.findIndex(item => item.art === artToUpdate);
+        if (itemIndex !== -1) {
+          if (cart[itemIndex].quantity > 1) {
+            cart[itemIndex].quantity--;
+          } else {
+            cart.splice(itemIndex, 1); // Remove if quantity goes to 0
+          }
+          saveCart(cart);
           updateCartDisplay();
-        } else if (result.status === 'not_found') {
-          console.log('Item not found in cart:', result.cart_items);
-        } else if (result.status === 'error' && result.message === 'Пользователь не авторизован') {
-          alert('Для удаления товара из корзины необходимо авторизоваться.');
-          openAuthModal();
+        }
+      } else if (target.classList.contains('cart-item__quantity-plus')) {
+        const artToUpdate = target.dataset.art;
+        let cart = getCart();
+        const itemIndex = cart.findIndex(item => item.art === artToUpdate);
+        if (itemIndex !== -1) {
+          cart[itemIndex].quantity++;
+          saveCart(cart);
+          updateCartDisplay();
         }
       }
     });
@@ -459,11 +541,14 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   // Cart dropdown toggle (existing working logic)
   if (cartIcon && cartDropdown) {
-    if (!isLoggedIn) {
+    if (!localStorage.getItem('currentUser')) {
       cartIcon.style.cursor = 'not-allowed';
+    } else {
+      cartIcon.style.cursor = 'pointer';
     }
+
     cartIcon.addEventListener('click', function(event) {
-      if (!isLoggedIn) {
+      if (!localStorage.getItem('currentUser')) { // Check localStorage directly for auth
         event.stopPropagation(); // Prevent dropdown toggle
         alert('Для просмотра корзины необходимо авторизоваться.');
         openAuthModal();
@@ -474,7 +559,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
     document.addEventListener('click', function(event) {
-      if (!isLoggedIn) return; // Prevent dropdown toggle if not logged in
+      if (!localStorage.getItem('currentUser')) return; // Prevent dropdown toggle if not logged in
       if (!cartDropdown.contains(event.target) && !cartIcon.contains(event.target)) {
         cartDropdown.classList.remove('show');
       }

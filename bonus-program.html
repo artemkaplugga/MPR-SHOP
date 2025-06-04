@@ -31,7 +31,7 @@
           <div class="header-icons">
             <div id="authToggleContainer">
               <img id="authIcon" src="images/components/auth-icon 1.svg" alt="Auth">
-              <a class="logoutBtn" href="/logout" id="logoutLink">Выйти</a>
+              <a class="logoutBtn" id="logoutLink">Выйти</a>
             </div>
             <a href="favorites.html"><img src="images/components/like-icon 1.svg" alt="Like"></a>
             <img src="images/components/cart-icon 1.svg" alt="Cart" id="cartIcon">
@@ -360,17 +360,22 @@
     <script src="js/modals.js"></script>
     <script src="js/catalog-menu.js"></script>
     <script src="js/mobile-menu.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/favorites.js"></script>
+    <script src="js/cart.js"></script>
     <!-- Модальное окно авторизации -->
+    <div id="user-greeting"></div>
     <div class="modal-auth-overlay" id="modalAuthOverlay" style="display:none;"></div>
     <div class="modal-auth" id="modalAuth" style="display:none;">
       <button class="modal-auth-close" id="modalAuthClose" aria-label="Закрыть">×</button>
       <div class="modal-auth-title">Вход</div>
-      <form class="modal-auth-form">
-        <input type="email" class="modal-auth-input" placeholder="Email">
-        <input type="password" class="modal-auth-input" placeholder="Пароль">
+      <form class="modal-auth-form" id="loginForm">
+        <input type="email" id="loginEmail" class="modal-auth-input" placeholder="Email">
+        <input type="password" id="loginPassword" class="modal-auth-input" placeholder="Пароль">
+      
         <div class="modal-auth-row">
           <label class="modal-auth-checkbox-label">
-            <input type="checkbox" class="modal-auth-checkbox" checked>
+            <input type="checkbox" name="remember" class="modal-auth-checkbox" checked>
             <span class="modal-auth-checkbox-custom"></span>
             Запомнить меня
           </label>
@@ -378,7 +383,8 @@
         </div>
         <button type="submit" class="modal-auth-btn">Войти</button>
       </form>
-      <div class="modal-auth-bottom-text"><a class="modal-auth-register" href="registration.html">Зарегистрироваться</a> <span class="modal-auth-bottom-or">или войти с помощью</span></div>
+      <div class="modal-auth-bottom-text"><a class="modal-auth-register" href="registration.html">Зарегистрироваться</a> <span
+          class="modal-auth-bottom-or">или войти с помощью</span></div>
       <div class="modal-auth-socials">
         <a href="#" class="modal-auth-social"><img src="images/index/icon_ok.png" alt="ok"></a>
         <a href="#" class="modal-auth-social"><img src="images/index/icon_yandex.png" alt="ya"></a>
