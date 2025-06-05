@@ -111,7 +111,7 @@
     <div class="container">
       <header class="header">
         <div class="header-top">Магазин постоянных распродаж</div>
-      
+  
         <div class="header-main">
           <div class="header-left">
             <a href="index.html"><img src="images/components/logo.svg" class="header-logo" alt="Logo"></a>
@@ -123,38 +123,38 @@
               </div>
             </div>
           </div>
-      
+  
           <div class="header-phone">8 8772 56 50 00</div>
-      
+  
           <div class="header-icons">
             <div id="authToggleContainer">
               <img id="authIcon" src="images/components/auth-icon 1.svg" alt="Auth">
-              <a class="logoutBtn" href="/logout" id="logoutLink">Выйти</a>
+              <a class="logoutBtn" id="logoutLink">Выйти</a>
             </div>
             <a href="favorites.html"><img src="images/components/like-icon 1.svg" alt="Like"></a>
             <img src="images/components/cart-icon 1.svg" alt="Cart" id="cartIcon">
-            <div class="cart-dropdown" id="cartDropdown">
-              <div class="cart-dropdown-content">
-                <p class="cart-empty">Корзина пуста</p>
-                <div class="cart-items-container"></div>
-                <div class="cart-total">Итого: 0,00 руб.</div>
-                <button class="cart-dropdown__checkout-btn">В корзину</button>
+              <div class="cart-dropdown" id="cartDropdown">
+                <div class="cart-dropdown-content">
+                  <p class="cart-empty">Корзина пуста</p>
+                  <div class="cart-items-container"></div>
+                  <div class="cart-total">Итого: 0,00 руб.</div>
+                  <button class="cart-dropdown__checkout-btn">В корзину</button>
+                </div>
               </div>
-            </div>
-            <div class="personal-cabinet-link" id="personalCabinetLink" style="display: none;">
-              <a href="personal-cabinet.html"><img src="images/components/auth-icon 1.svg" alt="Личный кабинет"></a>
-          </div>
+              <div class="personal-cabinet-link" id="personalCabinetLink" style="display: none;">
+                  <a href="personal-cabinet.html"><img src="images/components/auth-icon 1.svg" alt="Личный кабинет"></a>
+              </div>
             <div class="burger" id="burger">&#9776;</div>
           </div>
         </div>
-      
+  
         <div class="header-mobile-bottom-bar">
           <div class="header-search header-search-mobile">
             <input type="text" placeholder="Поиск">
             <img src="images/components/search-icon 1.svg" alt="Search">
           </div>
         </div>
-      
+  
         <div class="header-bottom">
           <div class="header-search">
             <input type="text" placeholder="Поиск">
@@ -300,32 +300,36 @@
     <script src="js/mobile-menu.js"></script>
     <script src="js/modals.js"></script>
     <script src="js/favorites-page.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/login.js"></script>
     <!-- Модальное окно авторизации -->
     <div class="modal-auth-overlay" id="modalAuthOverlay" style="display:none;"></div>
-    <div class="modal-auth" id="modalAuth" style="display:none;">
-      <button class="modal-auth-close" id="modalAuthClose" aria-label="Закрыть">×</button>
-      <div class="modal-auth-title">Вход</div>
-      <form class="modal-auth-form">
-        <input type="email" class="modal-auth-input" placeholder="Email">
-        <input type="password" class="modal-auth-input" placeholder="Пароль">
-        <div class="modal-auth-row">
-          <label class="modal-auth-checkbox-label">
-            <input type="checkbox" class="modal-auth-checkbox" checked>
-            <span class="modal-auth-checkbox-custom"></span>
-            Запомнить меня
-          </label>
-          <a href="#" class="modal-auth-forgot">Забыли пароль?</a>
-        </div>
-        <button type="submit" class="modal-auth-btn">Войти</button>
-      </form>
-      <div class="modal-auth-bottom-text"><a class="modal-auth-register" href="registration.html">Зарегистрироваться</a> <span class="modal-auth-bottom-or">или войти с помощью</span></div>
-      <div class="modal-auth-socials">
-        <a href="#" class="modal-auth-social"><img src="images/index/icon_ok.png" alt="ok"></a>
-        <a href="#" class="modal-auth-social"><img src="images/index/icon_yandex.png" alt="ya"></a>
-        <a href="#" class="modal-auth-social"><img src="images/index/icon_vk.png" alt="vk"></a>
-        <a href="#" class="modal-auth-social"><img src="images/index/icon_mail.png" alt="mailru"></a>
+  <div class="modal-auth" id="modalAuth" style="display:none;">
+    <button class="modal-auth-close" id="modalAuthClose" aria-label="Закрыть">×</button>
+    <div class="modal-auth-title">Вход</div>
+    <form class="modal-auth-form" id="loginForm">
+      <input type="email" id="loginEmail" class="modal-auth-input" placeholder="Email">
+      <input type="password" id="loginPassword" class="modal-auth-input" placeholder="Пароль">
+      
+      <div class="modal-auth-row">
+        <label class="modal-auth-checkbox-label">
+          <input type="checkbox" name="remember" class="modal-auth-checkbox" checked>
+          <span class="modal-auth-checkbox-custom"></span>
+          Запомнить меня
+        </label>
+        <a href="#" class="modal-auth-forgot">Забыли пароль?</a>
       </div>
+      <button type="submit" class="modal-auth-btn">Войти</button>
+    </form>
+    <div class="modal-auth-bottom-text"><a class="modal-auth-register" href="registration.html">Зарегистрироваться</a> <span
+        class="modal-auth-bottom-or">или войти с помощью</span></div>
+    <div class="modal-auth-socials">
+      <a href="#" class="modal-auth-social"><img src="images/index/icon_ok.png" alt="ok"></a>
+      <a href="#" class="modal-auth-social"><img src="images/index/icon_yandex.png" alt="ya"></a>
+      <a href="#" class="modal-auth-social"><img src="images/index/icon_vk.png" alt="vk"></a>
+      <a href="#" class="modal-auth-social"><img src="images/index/icon_mail.png" alt="mailru"></a>
     </div>
+  </div>
     <!-- Модальное окно способа доставки -->
     <div class="modal-delivery-overlay" id="modalDeliveryOverlay" style="display:none;"></div>
     <div class="modal-delivery" id="modalDelivery" style="display:none;">

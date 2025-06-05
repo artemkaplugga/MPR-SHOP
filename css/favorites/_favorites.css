@@ -143,6 +143,7 @@
   align-items: flex-start;
   margin-top: 32px;
   gap: 0;
+  margin-bottom: 150px;
 }
 .favorites-catalog-col {
   min-width: 220px;

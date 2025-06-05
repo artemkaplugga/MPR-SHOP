@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     const overlay = document.getElementById('modalAuthOverlay');
     const closeBtn = document.getElementById('modalAuthClose');
   
-    function openAuthModal() {
+    window.openAuthModal = function() {
       modal.style.display = 'flex';
       overlay.style.display = 'block';
       document.body.style.overflow = 'hidden';
-    }
+    };
     function closeAuthModal() {
       modal.style.display = 'none';
       overlay.style.display = 'none';
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (authBtn) {
     authBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        openAuthModal();
+        window.openAuthModal();
       });
     }
     if (closeBtn) {
@@ -241,8 +241,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       // Display the "Войти" button
       document.getElementById('user-greeting').innerHTML = `
-        <button onclick="document.getElementById('modalAuth').style.display = 'block';
-                        document.getElementById('modalAuthOverlay').style.display = 'block';"
+        <button onclick="window.openAuthModal();"
                 class="auth-button">
           Войти
         </button>
@@ -250,21 +249,53 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   }
 
-  // Initial UI update
+  // Initial UI update on page load
   updateAuthUI();
+  // Listen for login/logout events to update UI
+  window.addEventListener('userAuthChange', updateAuthUI);
 
-  // Add logout functionality (this part is already handled by js/login.js but keeping it for completeness in modals.js context)
-  const logoutLink = document.getElementById('logoutLink');
-  if (logoutLink) {
-      logoutLink.addEventListener('click', (e) => {
-          e.preventDefault();
-          localStorage.removeItem('currentUser');
-          alert('Вы вышли из аккаунта.');
-          isLoggedIn = false; // Update isLoggedIn status
-          updateAuthUI();
-          window.location.href = 'index.html';
-      });
-  }
+  // Favorites functionality (This logic should ideally be in js/favorites.js)
+  const favoriteButtons = document.querySelectorAll('.special-card__like, .sport-card__like');
+
+  favoriteButtons.forEach(button => {
+    // Initial state check for like buttons
+    const card = button.closest('.special-card, .sport-card');
+    const art = card.querySelector('.special-card__art, .sport-card__info .sport-card__title').textContent.replace('Арт.: ', '').trim();
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const isFav = favorites.some(item => item.art === art);
+    updateLikeButton(button, isFav);
+
+    button.addEventListener('click', function (e) {
+      const product = {
+        image: card.querySelector('.special-card__img, .sport-card__img').src,
+        title: card.querySelector('.special-card__title, .sport-card__info .sport-card__title').textContent.trim(),
+        art: card.querySelector('.special-card__art, .sport-card__info .sport-card__title').textContent.replace('Арт.: ', '').trim(),
+        price: card.querySelector('.special-card__price, .sport-card__price').textContent.trim()
+      };
+
+      if (!localStorage.getItem('currentUser')) { // Check localStorage directly for auth
+        e.preventDefault(); // Prevent default action
+        alert('Для добавления в избранное необходимо авторизоваться.');
+        window.openAuthModal(); // Open auth modal
+        return;
+      }
+
+      let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      const index = favorites.findIndex(item => item.art === product.art); // Changed to use product.art for comparison
+
+      if (index !== -1) {
+        // Product is currently favorited, so unfavorite it
+        favorites.splice(index, 1);
+        updateLikeButton(this, false);
+      } else {
+        // Product is not favorited, so favorite it
+        favorites.push(product);
+        updateLikeButton(this, true);
+        alert('Товар добавлен в избранное!');
+      }
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    });
+  });
 
   // --- New Review Modal ---
   const openReviewBtn = document.querySelector('.product-reviews-new-btn');
@@ -285,7 +316,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       e.preventDefault();
       if (!localStorage.getItem('currentUser')) { // Check localStorage directly for auth
         alert('Для оставления отзыва необходимо авторизоваться.');
-        openAuthModal();
+        window.openAuthModal();
         return;
       }
       openReviewModal();
@@ -369,7 +400,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       if (!localStorage.getItem('currentUser')) { // Check localStorage directly for auth
         e.preventDefault(); // Prevent default action
         alert('Для добавления в избранное необходимо авторизоваться.');
-        openAuthModal(); // Open auth modal
+        window.openAuthModal(); // Open auth modal
         return;
       }
 
@@ -389,180 +420,4 @@ document.addEventListener('DOMContentLoaded', async function () {
       localStorage.setItem('favorites', JSON.stringify(favorites));
     });
   });
-
-  // Cart functionality (This logic should ideally be in js/cart.js, but removing server interaction)
-  const cartIcon = document.getElementById('cartIcon');
-  const cartDropdown = document.getElementById('cartDropdown');
-  const cartItemsContainer = cartDropdown ? cartDropdown.querySelector('.cart-items-container') : null;
-  const cartEmptyMessage = cartDropdown ? cartDropdown.querySelector('.cart-empty') : null;
-  const cartTotalElement = cartDropdown ? cartDropdown.querySelector('.cart-total') : null;
-  const addToCartButtons = document.querySelectorAll('.special-card__cart, .sport-card__cart');
-
-  function getCart() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
-  }
-
-  function saveCart(cart) {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
-
-  function updateCartDisplay() {
-    const cartItems = getCart();
-    if (cartItemsContainer) cartItemsContainer.innerHTML = ''; // Clear items container
-    let total = 0;
-
-    if (cartItems.length === 0) {
-      if (cartEmptyMessage) {
-        cartEmptyMessage.style.display = 'block';
-      }
-    } else {
-      if (cartEmptyMessage) {
-        cartEmptyMessage.style.display = 'none';
-      }
-      cartItems.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('cart-item');
-        itemElement.innerHTML = `
-          <img src="${item.image}" alt="${item.title}" class="cart-item__img">
-          <div class="cart-item__details">
-            <div class="cart-item__title">${item.title}</div>
-            <div class="cart-item__art">${item.art}</div>
-            <div class="cart-item__price">${item.price}</div>
-            <div class="cart-item__quantity-controls">
-              <button class="cart-item__quantity-minus" data-art="${item.art}">-</button>
-              <span class="cart-item__quantity">${item.quantity}</span>
-              <button class="cart-item__quantity-plus" data-art="${item.art}">+</button>
-            </div>
-          </div>
-          <button class="cart-item__remove" data-art="${item.art}">×</button>
-        `;
-        if (cartItemsContainer) {
-          cartItemsContainer.appendChild(itemElement);
-        }
-
-        const priceValue = parseFloat(item.price.replace('от ', '').replace(' руб./шт.', '').replace(',', '.'));
-        if (!isNaN(priceValue)) {
-          total += priceValue * item.quantity;
-        }
-      });
-    }
-    if (cartTotalElement) {
-      cartTotalElement.textContent = `Итого: ${total.toFixed(2).replace('.', ',')} руб.`;
-    }
-
-    // Show/hide checkout button
-    const checkoutButton = cartDropdown ? cartDropdown.querySelector('.cart-dropdown__checkout-btn') : null;
-    if (checkoutButton) {
-      if (localStorage.getItem('currentUser') && cartItems.length > 0) {
-        checkoutButton.style.display = 'block';
-      } else {
-        checkoutButton.style.display = 'none';
-      }
-    }
-  }
-
-  // Initialize cart display on page load
-  updateCartDisplay();
-
-  addToCartButtons.forEach(button => {
-    if (!localStorage.getItem('currentUser')) {
-      button.style.cursor = 'not-allowed';
-    } else {
-      button.style.cursor = 'pointer';
-    }
-
-    button.addEventListener('click', function(e) {
-      if (!localStorage.getItem('currentUser')) { // Check localStorage directly for auth
-        e.preventDefault();
-        alert('Для добавления товара в корзину необходимо авторизоваться.');
-        openAuthModal();
-        return;
-      }
-
-      const card = this.closest('.special-card, .sport-card');
-      const image = card.querySelector('.special-card__img, .sport-card__img').src;
-      const title = card.querySelector('.special-card__title, .sport-card__info .sport-card__title').textContent.trim();
-      const art = card.querySelector('.special-card__art, .sport-card__info .sport-card__title').textContent.replace('Арт.: ', '').trim();
-      const price = card.querySelector('.special-card__price, .sport-card__price').textContent.trim();
-
-      let cart = getCart();
-      const existingItemIndex = cart.findIndex(item => item.art === art);
-
-      if (existingItemIndex !== -1) {
-        // If item exists, increase quantity
-        cart[existingItemIndex].quantity = (cart[existingItemIndex].quantity || 1) + 1; 
-      } else {
-        // If item does not exist, add it with quantity 1
-        cart.push({ image, title, art, price, quantity: 1 });
-      }
-      saveCart(cart);
-      updateCartDisplay();
-      alert('Товар добавлен в корзину!');
-    });
-  });
-
-  // Event listener for removing items from cart and quantity changes
-  if (cartItemsContainer) {
-    cartItemsContainer.addEventListener('click', function(event) {
-      if (!localStorage.getItem('currentUser')) return; // Prevent action if not logged in
-
-      const target = event.target;
-      if (target.classList.contains('cart-item__remove')) {
-        const artToRemove = target.dataset.art;
-        let cart = getCart();
-        cart = cart.filter(item => item.art !== artToRemove);
-        saveCart(cart);
-        updateCartDisplay();
-      } else if (target.classList.contains('cart-item__quantity-minus')) {
-        const artToUpdate = target.dataset.art;
-        let cart = getCart();
-        const itemIndex = cart.findIndex(item => item.art === artToUpdate);
-        if (itemIndex !== -1) {
-          if (cart[itemIndex].quantity > 1) {
-            cart[itemIndex].quantity--;
-          } else {
-            cart.splice(itemIndex, 1); // Remove if quantity goes to 0
-          }
-          saveCart(cart);
-          updateCartDisplay();
-        }
-      } else if (target.classList.contains('cart-item__quantity-plus')) {
-        const artToUpdate = target.dataset.art;
-        let cart = getCart();
-        const itemIndex = cart.findIndex(item => item.art === artToUpdate);
-        if (itemIndex !== -1) {
-          cart[itemIndex].quantity++;
-          saveCart(cart);
-          updateCartDisplay();
-        }
-      }
-    });
-  }
-
-  // Cart dropdown toggle (existing working logic)
-  if (cartIcon && cartDropdown) {
-    if (!localStorage.getItem('currentUser')) {
-      cartIcon.style.cursor = 'not-allowed';
-    } else {
-      cartIcon.style.cursor = 'pointer';
-    }
-
-    cartIcon.addEventListener('click', function(event) {
-      if (!localStorage.getItem('currentUser')) { // Check localStorage directly for auth
-        event.stopPropagation(); // Prevent dropdown toggle
-        alert('Для просмотра корзины необходимо авторизоваться.');
-        openAuthModal();
-        return;
-      }
-      event.stopPropagation();
-      cartDropdown.classList.toggle('show');
-    });
-
-    document.addEventListener('click', function(event) {
-      if (!localStorage.getItem('currentUser')) return; // Prevent dropdown toggle if not logged in
-      if (!cartDropdown.contains(event.target) && !cartIcon.contains(event.target)) {
-        cartDropdown.classList.remove('show');
-      }
-    });
-  }
 });
