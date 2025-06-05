@@ -118,3 +118,88 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 }); 
+document.addEventListener('DOMContentLoaded', () => {
+    const mainProductLikeBtn = document.getElementById('mainProductLikeBtn');
+    const productTitle = document.querySelector('.product-title').textContent.trim();
+    const productArt = document.querySelector('.product-art').textContent.replace('Арт.: ', '').trim();
+    const productPrice = document.querySelector('.product-price').textContent.trim();
+    const productMainImg = document.querySelector('.product-main-img').src;
+
+    function getFavorites() {
+        return JSON.parse(localStorage.getItem('favorites')) || [];
+    }
+
+    function saveFavorites(favorites) {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+
+    function isProductInFavorites(art) {
+        const favorites = getFavorites();
+        return favorites.some(item => item.art === art);
+    }
+
+    function updateLikeButton(button, isInFavorites) {
+        const img = button.querySelector('img');
+        if (isInFavorites) {
+            img.src = 'images/components/like-active.svg';
+            button.classList.add('active');
+        } else {
+            img.src = 'images/components/like.svg';
+            button.classList.remove('active');
+        }
+    }
+
+    // Handle main product like button
+    if (mainProductLikeBtn) {
+        const currentProductInFavorites = isProductInFavorites(productArt);
+        updateLikeButton(mainProductLikeBtn, currentProductInFavorites);
+
+        mainProductLikeBtn.addEventListener('click', () => {
+            let favorites = getFavorites();
+            if (isProductInFavorites(productArt)) {
+                favorites = favorites.filter(item => item.art !== productArt);
+                alert('Товар удален из избранного!');
+            } else {
+                favorites.push({
+                    imageSrc: productMainImg,
+                    title: productTitle,
+                    art: productArt,
+                    price: productPrice
+                });
+                alert('Товар добавлен в избранное!');
+            }
+            saveFavorites(favorites);
+            updateLikeButton(mainProductLikeBtn, isProductInFavorites(productArt));
+        });
+    }
+
+    // Handle similar product cards' like buttons
+    document.querySelectorAll('.special-card .special-like').forEach(button => {
+        const card = button.closest('.special-card');
+        const art = card.querySelector('.special-card__art').textContent.replace('Арт.: ', '').trim();
+        const imageSrc = card.querySelector('.special-card__img').src;
+        const title = card.querySelector('.special-card__title').textContent.trim();
+        const price = card.querySelector('.special-card__price').textContent.trim();
+
+        const isInFavorites = isProductInFavorites(art);
+        updateLikeButton(button, isInFavorites);
+
+        button.addEventListener('click', () => {
+            let favorites = getFavorites();
+            if (isProductInFavorites(art)) {
+                favorites = favorites.filter(item => item.art !== art);
+                alert('Товар удален из избранного!');
+            } else {
+                favorites.push({
+                    imageSrc: imageSrc,
+                    title: title,
+                    art: art,
+                    price: price
+                });
+                alert('Товар добавлен в избранное!');
+            }
+            saveFavorites(favorites);
+            updateLikeButton(button, isProductInFavorites(art));
+        });
+    });
+}); 

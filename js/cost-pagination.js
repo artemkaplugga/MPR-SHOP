@@ -11,8 +11,8 @@ fixedPriceContainers.forEach(container => {
       slidesPerView: 6,
       spaceBetween: 0,
       navigation: {
-        nextEl: container.querySelector('.special-next'), // Use container specific navigation
-        prevEl: container.querySelector('.special-prev'), // Use container specific navigation
+        nextEl: '.special-next2',
+        prevEl: '.special-prev2',
       },
       allowTouchMove: false,
       simulateTouch: false,
@@ -38,14 +38,14 @@ fixedPriceContainers.forEach(container => {
           simulateTouch: true,
         },
         375: {
-          slidesPerView: 1.5,
+          slidesPerView: 1,
           slidesPerGroup: 1,
           spaceBetween: 10,
           allowTouchMove: true,
           simulateTouch: true,
         },
         320: {
-          slidesPerView: 1.2,
+          slidesPerView: 1,
           slidesPerGroup: 1,
           spaceBetween: 8,
           allowTouchMove: true,

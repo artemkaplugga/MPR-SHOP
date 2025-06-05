@@ -69,7 +69,7 @@ const topSwiper = new Swiper('.top-swiper', {
    
     },
     375: {
-      slidesPerView: 1.5,
+      slidesPerView: 1,
       slidesPerGroup: 1,
     
     },
@@ -128,52 +128,7 @@ const hitsSwiper = new Swiper('.hits-swiper', {
   }
 });
 
-const fixedSwiper = new Swiper('.fixed-swiper', {
-  slidesPerView: 6,
-  spaceBetween: 0,
-  navigation: {
-    nextEl: '.hits-next',
-    prevEl: '.hits-prev',
-  },
-  allowTouchMove: false,
-  simulateTouch: false,
-  breakpoints: {
-    1920: {
-      slidesPerView: 6,
-      slidesPerGroup: 4,
-      spaceBetween: 0,
-    },
-   
-    768: {
-      slidesPerView: 4,
-      slidesPerGroup: 4,
-      spaceBetween: 18,
-      allowTouchMove: true,
-      simulateTouch: true,
-    },
-    480: {
-      slidesPerView: 2,
-      slidesPerGroup: 2,
-      spaceBetween: 10,
-      allowTouchMove: true,
-      simulateTouch: true,
-    },
-    375: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-      spaceBetween: 10,
-      allowTouchMove: true,
-      simulateTouch: true,
-    },
-    320: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-      spaceBetween: 8,
-      allowTouchMove: true,
-      simulateTouch: true,
-    }
-  }
-});
+
 
 // Main screen swiper
 const mainSwiper = new Swiper('.main-swiper', {
