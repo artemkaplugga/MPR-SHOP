@@ -1064,7 +1064,35 @@
         <a href="#" class="modal-auth-social"><img src="images/index/icon_mail.png" alt="mailru"></a>
       </div>
     </div>
-  
-     
+    <!-- Модальное окно для отзывов -->
+    <div class="review-modal-overlay" id="modalReviewOverlay" style="display:none;"></div>
+    <div class="review-modal" id="modalReview" style="display:none;">
+      <button class="review-modal-close" id="modalReviewClose" aria-label="Закрыть">×</button>
+      <div class="review-modal-title">Оставить отзыв</div>
+      <form class="review-modal-form">
+        <label class="review-modal-label">Ваша оценка</label>
+        <div class="review-modal-rating">
+          <span class="star" data-value="1">&#9733;</span>
+          <span class="star" data-value="2">&#9733;</span>
+          <span class="star" data-value="3">&#9733;</span>
+          <span class="star" data-value="4">&#9733;</span>
+          <span class="star" data-value="5">&#9733;</span>
+        </div>
+        <input type="text" class="review-modal-input" placeholder="Имя" name="name">
+        <input type="email" class="review-modal-input" placeholder="Email" name="email">
+        <textarea class="review-modal-textarea" placeholder="Комментарий" name="comment"></textarea>
+        <label class="review-modal-checkbox-label">
+          <input type="checkbox" name="anonymous" class="review-modal-checkbox">
+          <span class="review-modal-checkbox-custom"></span>
+          Оставить отзыв анонимно
+        </label>
+        <label class="review-modal-terms-label">
+          <input type="checkbox" name="terms" class="review-modal-terms-checkbox">
+          <span class="review-modal-terms-custom"></span>
+          Я принимаю условия <a href="#">Пользовательского соглашения</a>
+        </label>
+        <button type="submit" class="review-modal-btn">Отправить отзыв</button>
+      </form>
+    </div>
 </body>
 </html>

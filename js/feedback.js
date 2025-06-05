@@ -57,96 +57,116 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Собираем данные вручную
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('comment', comment);
-      formData.append('rating', selectedRating);
-      if (anonymous) formData.append('anonymous', 'on');
+      // Instead of fetching to a backend, save to localStorage
+      const review = {
+        name: name,
+        email: email,
+        comment: comment,
+        rating: selectedRating,
+        anonymous: anonymous // Store anonymous status
+      };
 
-      fetch('/add_review', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => {
-        if (!response.ok) {
-          // If response is not OK (e.g., 4xx or 5xx status)
-          const contentType = response.headers.get("content-type");
-          if (contentType && contentType.indexOf("application/json") !== -1) {
-            return response.json().then(errorData => {
-              throw new Error(errorData.message || "Неизвестная ошибка сервера");
-            });
-          } else {
-            // If not JSON, try to read as text for debugging
-            return response.text().then(text => {
-              console.error("Server responded with non-JSON error:", text);
-              throw new Error("Ошибка сети или некорректный ответ сервера. Подробности в консоли.");
-            }).catch(() => {
-              throw new Error("Ошибка сети или некорректный ответ сервера");
-            });
-          }
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data.status === 'ok') {
-          alert("Спасибо за отзыв!");
-          closeReviewModal(); // Close the modal on successful submission
-          loadReviews(); // загружаем обновлённые отзывы
-          document.querySelector('.review-modal-textarea').value = '';
-          document.querySelectorAll('.star').forEach(s => s.classList.remove('selected'));
-          selectedRating = null;
-        } else {
-          // This block should ideally not be reached if !response.ok handles most errors
-          alert("Не удалось сохранить отзыв: " + (data.message || "Произошла неизвестная ошибка"));
-        }
-      })
-      .catch(err => {
-        console.error("Ошибка:", err);
-        alert("Не удалось сохранить отзыв: " + err.message);
-      });
+      let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+      reviews.push(review);
+      localStorage.setItem('reviews', JSON.stringify(reviews));
+
+      alert("Спасибо за отзыв!");
+      closeReviewModal(); // Close the modal on successful submission
+      loadReviews(); // Load updated reviews
+
+      // Clear the form
+      if (nameInput) nameInput.value = '';
+      if (emailInput) emailInput.value = '';
+      if (commentInput) commentInput.value = '';
+      if (anonymousCheckbox) anonymousCheckbox.checked = false;
+      if (termsCheckbox) termsCheckbox.checked = false;
+      document.querySelectorAll('.star').forEach(s => s.classList.remove('selected'));
+      selectedRating = null; // Reset selected rating
     });
   }
 
   // Загрузка отзывов
   function loadReviews() {
-    fetch('/api/reviews')
-      .then(res => res.json())
-      .then(reviews => {
-        const container = document.getElementById('reviews-container');
-        const reviewCountElement = document.querySelector('.product-reviews-count'); // Get the review count element
-        if (!container) return;
+    // Fetch reviews from localStorage instead of /api/reviews
+    const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    const container = document.getElementById('reviews-container');
+    const reviewCountElement = document.querySelector('.product-reviews-count');
 
-        // Update the review count
-        if (reviewCountElement) {
-          reviewCountElement.textContent = `${reviews.length} отзывов`;
-        }
+    if (!container) return;
 
-        container.innerHTML = '';
+    // Update the review count
+    if (reviewCountElement) {
+      reviewCountElement.textContent = `${reviews.length} отзывов`;
+    }
 
-        if (reviews.length === 0) {
-          container.innerHTML = '<p class="no-reviews">Нет отзывов. Будьте первым!</p>';
-          return;
-        }
+    container.innerHTML = '';
 
-        reviews.forEach(review => {
-          const card = document.createElement('div');
-          card.className = 'review-card';
+    if (reviews.length === 0) {
+      container.innerHTML = '<p class="no-reviews">Нет отзывов. Будьте первым!</p>';
+      return;
+    }
 
-          card.innerHTML = `
-            <div class="review-header">${review.name}</div>
-            <div class="review-rating">Рейтинг: ${review.rating}/5</div>
-            <div class="review-comment">${review.comment}</div>
-          `;
-          container.appendChild(card);
-        });
-      })
-      .catch(err => {
-        console.error("Ошибка загрузки отзывов", err);
-      });
+    reviews.forEach(review => {
+      const card = document.createElement('div');
+      card.className = 'review-card';
+
+      // Display "Анонимно" if anonymous is true
+      const displayName = review.anonymous ? 'Анонимно' : review.name;
+
+      card.innerHTML = `
+        <div class="review-header">${displayName}</div>
+        <div class="review-rating">Рейтинг: ${review.rating}/5</div>
+        <div class="review-comment">${review.comment}</div>
+      `;
+      container.appendChild(card);
+    });
   }
 
   // При загрузке страницы — загружаем отзывы
   window.addEventListener('load', loadReviews);
+
+  // Open the review modal
+  const openReviewModalBtn = document.querySelector('.product-reviews-new-btn');
+  if (openReviewModalBtn) {
+    openReviewModalBtn.addEventListener('click', () => {
+      const modalReview = document.getElementById('modalReview');
+      const modalReviewOverlay = document.getElementById('modalReviewOverlay');
+      if (modalReview) modalReview.style.display = 'flex'; // Use flex to center with CSS
+      if (modalReviewOverlay) modalReviewOverlay.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Prevent scrolling of the background
+      
+      // Load existing reviews and ensure form is clear when opening
+      loadReviews(); // Refresh reviews when opening modal
+      // Clear the form when opening the modal for a new review
+      const nameInput = document.querySelector('.review-modal-input[type="text"]');
+      const emailInput = document.querySelector('.review-modal-input[type="email"]');
+      const commentInput = document.querySelector('.review-modal-textarea');
+      const anonymousCheckbox = document.querySelector('.review-modal-checkbox');
+      const termsCheckbox = document.querySelector('.review-modal-terms-checkbox');
+      
+      if (nameInput) nameInput.value = '';
+      if (emailInput) emailInput.value = '';
+      if (commentInput) commentInput.value = '';
+      if (anonymousCheckbox) anonymousCheckbox.checked = false;
+      if (termsCheckbox) termsCheckbox.checked = false;
+      document.querySelectorAll('.star').forEach(s => s.classList.remove('selected'));
+      selectedRating = null;
+    });
+  }
+
+  // Close the review modal via close button or overlay
+  const modalReviewCloseBtn = document.getElementById('modalReviewClose');
+  const modalReviewOverlay = document.getElementById('modalReviewOverlay');
+
+  if (modalReviewCloseBtn) {
+    modalReviewCloseBtn.addEventListener('click', closeReviewModal);
+  }
+
+  if (modalReviewOverlay) {
+    modalReviewOverlay.addEventListener('click', (e) => {
+      if (e.target === modalReviewOverlay) {
+        closeReviewModal();
+      }
+    });
+  }
 });
