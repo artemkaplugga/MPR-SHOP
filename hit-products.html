@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Хиты</title>
     <link rel="icon" href="images/components/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/catalog/_catalog.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="css/catalog/catalog-menu.css">
     <link rel="stylesheet" href="css/components/_cart-dropdown.css">
@@ -141,6 +142,9 @@
                 <button class="cart-dropdown__checkout-btn">В корзину</button>
               </div>
             </div>
+            <div class="personal-cabinet-link" id="personalCabinetLink" style="display: none;">
+              <a href="personal-cabinet.html"><img src="images/components/auth-icon 1.svg" alt="Личный кабинет"></a>
+          </div>
             <div class="burger" id="burger">&#9776;</div>
           </div>
         </div>
@@ -394,7 +398,7 @@
     <script src="js/modals.js"></script>
     <script src="js/catalog-menu.js"></script>
     <!-- Модальное окно авторизации -->
-    <div id="user-greeting"></div>
+    
     <div class="modal-auth-overlay" id="modalAuthOverlay" style="display:none;"></div>
     <div class="modal-auth" id="modalAuth" style="display:none;">
       <button class="modal-auth-close" id="modalAuthClose" aria-label="Закрыть">×</button>

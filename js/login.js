@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const authIcon = document.getElementById('authIcon');
     const authToggleContainer = document.getElementById('authToggleContainer');
     const userGreetingContainer = document.getElementById('user-greeting');
+    const personalCabinetLink = document.getElementById('personalCabinetLink');
 
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modalAuth) modalAuth.style.display = 'none';
             if (modalAuthOverlay) modalAuthOverlay.style.display = 'none';
 
+            if (personalCabinetLink) personalCabinetLink.style.display = 'block';
         } else {
             // User is logged out
             if (authIcon) authIcon.style.display = 'block';
@@ -72,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 userGreetingContainer.style.display = 'none';
             }
+            if (personalCabinetLink) personalCabinetLink.style.display = 'none';
         }
     }
 

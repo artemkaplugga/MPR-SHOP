@@ -1,0 +1,141 @@
+.personal-cabinet-layout-row {
+    display: flex;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.personal-cabinet-menu-col {
+    flex: 0 0 280px;
+    max-width: 280px;
+}
+
+.personal-cabinet-menu {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #E0E0E0;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 0;
+}
+
+.personal-cabinet-menu li {
+    padding: 12px 20px;
+}
+
+.personal-cabinet-menu li a {
+    text-decoration: none;
+    color: #222;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.2s;
+}
+
+.personal-cabinet-menu li a:hover {
+    color: #EB222D;
+}
+
+.personal-cabinet-menu li.active a {
+    color: #EB222D;
+}
+
+.personal-cabinet-menu li img {
+    width: 24px;
+    height: 24px;
+}
+
+.personal-cabinet-content-col {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px 30px;
+}
+
+.personal-cabinet-breadcrumbs {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.personal-cabinet-title {
+    font-size: 32px;
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.personal-cabinet-empty-message {
+    font-size: 18px;
+    color: #555;
+    padding: 20px;
+    text-align: center;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .personal-cabinet-layout-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .personal-cabinet-menu-col {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .personal-cabinet-menu {
+        margin-top: 10px;
+    }
+
+    .personal-cabinet-content-col {
+        padding: 15px 20px;
+    }
+
+    .personal-cabinet-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .personal-cabinet-layout-row {
+        margin-top: 20px;
+    }
+
+    .personal-cabinet-breadcrumbs {
+        font-size: 12px;
+    }
+
+    .personal-cabinet-title {
+        font-size: 24px;
+    }
+
+    .personal-cabinet-menu li a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .personal-cabinet-content-col {
+        padding: 10px 15px;
+    }
+
+    .personal-cabinet-title {
+        font-size: 20px;
+    }
+
+    .personal-cabinet-menu li a {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}

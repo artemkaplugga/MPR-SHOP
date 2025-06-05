@@ -141,6 +141,9 @@
                 <button class="cart-dropdown__checkout-btn">В корзину</button>
               </div>
             </div>
+            <div class="personal-cabinet-link" id="personalCabinetLink" style="display: none;">
+              <a href="personal-cabinet.html"><img src="images/components/auth-icon 1.svg" alt="Личный кабинет"></a>
+          </div>
             <div class="burger" id="burger">&#9776;</div>
           </div>
         </div>
@@ -235,7 +238,7 @@
       
         </div>
       </div>  
-        <div id="user-greeting" style="display: none;"></div>
+  
         <div class="stocks-layout-row">
           <div class="stocks-catalog-col">
             <button class="product-catalog-btn" id="catalogMenuBtn"><span class="product-catalog-btn__icon">☰</span> Каталог</button>
@@ -464,45 +467,6 @@
       </div>
     </div>
    
-    <script>
-      fetch('/api/user')
-        .then(response => response.json())
-        .then(user => {
-          const greetingContainer = document.getElementById('user-greeting');
-      
-          if (user.logged_in) {
-            // ПОЛНОСТЬЮ скрываем модальное окно авторизации
-            const modalAuth = document.getElementById('modalAuth');
-            const modalOverlay = document.getElementById('modalAuthOverlay');
-            const authButton = greetingContainer.querySelector('.auth-button'); // Try to get the button if it exists
-
-            if (modalAuth) modalAuth.style.display = 'none';
-            if (modalOverlay) modalOverlay.style.display = 'none';
-            if (authButton) authButton.style.display = 'none'; // Explicitly hide the button if found
-
-            // Скрываем иконку входа и показываем кнопку выхода
-            const authIcon = document.getElementById('authIcon');
-            const logoutLink = document.getElementById('logoutLink');
-            if (authIcon) authIcon.style.display = 'none';
-            if (logoutLink) logoutLink.style.display = 'block';
-
-         
-          } else {
-            // Показываем иконку входа и скрываем кнопку выхода
-            const authIcon = document.getElementById('authIcon');
-            const logoutLink = document.getElementById('logoutLink');
-            if (authIcon) authIcon.style.display = 'block';
-            if (logoutLink) logoutLink.style.display = 'none';
-
-            greetingContainer.innerHTML = `
-              <button onclick="document.getElementById('modalAuth').style.display = 'block';
-                              document.getElementById('modalAuthOverlay').style.display = 'block';"
-                      class="auth-button">
-                Войти
-              </button>
-            `;
-          }
-        });
-      </script>
+    
 </body>
 </html>

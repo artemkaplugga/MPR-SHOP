@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О магазине</title>
+    <title>Личный кабинет</title>
     <link rel="icon" href="images/components/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" a href="styles.css">
     <link rel="stylesheet" href="css/catalog/catalog-menu.css">
     <link rel="stylesheet" href="css/components/_cart-dropdown.css">
+    <link rel="stylesheet" href="css/personal-cabinet/_personal-cabinet.css">
 </head>
 <body>
     <div class="catalog-dropdown-menu" id="catalogDropdownMenu">
@@ -23,7 +24,7 @@
                 <li><img src="images/components/home textiles-icon.png" alt="Домашний текстиль">Домашний текстиль</li>
                 <li><img src="images/components/shirt-icon.png" alt="Звездные проекты">Звездные проекты</li>
                 <li><img src="images/components/instruments-icon.png" alt="Инструменты">Инструменты</li>
-                <li><img src="images/components/stationery-icon.png" alt="Канцтовары">Канцтовары</li>
+                <li><img src="images/components/stationery-icon" alt="Канцтовары">Канцтовары</li>
                 <li><img src="images/components/mobile accessories-icon.png" alt="Мобильные аксессуары">Мобильные аксессуары</li>
                 <li><img src="images/components/Christmas products-icon.png" alt="Новогодние товары">Новогодние товары</li>
                 <li><img src="images/components/gifts-icon.png" alt="Подарки">Подарки</li>
@@ -142,8 +143,8 @@
               </div>
             </div>
             <div class="personal-cabinet-link" id="personalCabinetLink" style="display: none;">
-              <a href="personal-cabinet.html"><img src="images/components/auth-icon 1.svg" alt="Личный кабинет"></a>
-          </div>
+                <a href="personal-cabinet.html"><img src="images/components/auth-icon 1.svg" alt="Личный кабинет"></a>
+            </div>
             <div class="burger" id="burger">&#9776;</div>
           </div>
         </div>
@@ -183,85 +184,54 @@
         </div>
       </header>
 
-
-
-
-
-
-      
-
-
-
-
-
-
-
-      
-      <!-- 📱 Мобильное меню -->
-      <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-          <a href="index.html"><img src="images/components/logo.svg" class="header-logo" alt="Logo"></a>
-         
-          <button class="close-btn" id="closeBtn">&times;</button>
+      <div class="personal-cabinet-layout-row">
+        <div class="personal-cabinet-menu-col">
+          <button class="product-catalog-btn" id="catalogMenuBtn"><span class="product-catalog-btn__icon">☰</span> Каталог</button>
+          <ul class="personal-cabinet-menu">
+            <li class="active"><a href="#currentOrders">Текущие заказы</a></li>
+            <li><a href="#orderHistory">История заказов</a></li>
+            <li><a href="#bonusProgram">Бонусная программа</a></li>
+            <li><a href="#personalData">Личные данные</a></li>
+            <li><a href="#changePassword">Сменить пароль</a></li>
+            <li><a href="#subscriptions">Подписки</a></li>
+            <li><a href="#">Выход <img src="images/components/sign-out (1).svg" alt="Выход"></a></li>
+          </ul>
         </div>
-      
-        <div class="mobile-menu-links">
-      
-          <div class="mobile-menu-section">
+        <div class="personal-cabinet-content-col">
+          <span class="personal-cabinet-breadcrumbs">Личный кабинет / Мой кабинет / Мои заказы</span>
           
+          <div class="tab-content active" id="currentOrders">
+            <h1 class="personal-cabinet-title">Текущие заказы</h1>
+            <p class="personal-cabinet-empty-message">Текущие заказы не найдены</p>
           </div>
-      
-          <div class="mobile-menu-section">
-            <a href="stocks.html">Акции</a>
-            <a href="about.html">О магазинах</a>
-            <a href="contacts-inf.html">Контакты</a>
-            <a href="bonus-program.html">Бонусная программа</a>
+
+          <div class="tab-content" id="orderHistory">
+            <h1 class="personal-cabinet-title">История заказов</h1>
+            <p class="personal-cabinet-empty-message">История заказов не найдена</p>
           </div>
-      
-          <div class="mobile-menu-section">
-            <div class="header-phone">8 8772 56 50 00</div>
+
+          <div class="tab-content" id="bonusProgram">
+            <h1 class="personal-cabinet-title">Бонусная программа</h1>
+            <p class="personal-cabinet-empty-message">У вас пока нет активных бонусных программ.</p>
           </div>
-      
-          <div class="mobile-menu-section">
-            <div class="header-location">
-              <img src="images/components/placemark 1.svg" alt="Location">
-              <div>
-                <div class="header-city">Ваш город Майкоп</div>
-                <div class="header-delivery" id="openDeliveryModal">Способ доставки</div>
-              </div>
-            </div>
+
+          <div class="tab-content" id="personalData">
+            <h1 class="personal-cabinet-title">Личные данные</h1>
+            <p class="personal-cabinet-empty-message">Здесь будут ваши личные данные.</p>
           </div>
-      
-          <div class="mobile-menu-section">
-            
+
+          <div class="tab-content" id="changePassword">
+            <h1 class="personal-cabinet-title">Сменить пароль</h1>
+            <p class="personal-cabinet-empty-message">Здесь можно сменить пароль.</p>
           </div>
-      
+
+          <div class="tab-content" id="subscriptions">
+            <h1 class="personal-cabinet-title">Подписки</h1>
+            <p class="personal-cabinet-empty-message">У вас нет активных подписок.</p>
+          </div>
+
         </div>
       </div>
-         
-        <div class="stocks-layout-row">
-          <div class="stocks-catalog-col">
-            <button class="product-catalog-btn" id="catalogMenuBtn"><span class="product-catalog-btn__icon">☰</span> Каталог</button>
-          </div>
-          <div class="stocks-content-col">
-            <span class="stocks-breadcrumbs">О магазине</span>
-            <h1 class="stocks-title">О магазине</h1>
-            <p class="about-text"><b>МПР – Магазин Постоянных Распродаж реализует товары для дома и дачи</b></p>
-            <p class="about-text">Это федеральная франчайзинговая сеть розничных магазинов самообслуживания, в которой представлено 5000 наименований товаров по низким ценам.</p>
-            <p class="about-text">Каждый человек хочет купить дешевле. С помощью МПР это возможно. Регулярные распродажи и яркие акции не оставят равнодушными. МПР станет верным другом и помощником для каждого члена семьи. Большой выбор хозяйственных товаров, бытовой техники, посуды, товаров для спорта и отдыха приятно удивят наших покупательниц. Для мужчин в наличии ассортимент инструментов, авто и сантехники. А самых маленьких покупателей порадуют игрушки, развивающие игры и товары для школы. МПР помогает сделать покупки необходимых в быту вещей доступными.</p>
-            <p class="about-text-small">Регулярные распродажи, скидки и акции ждут каждого покупателя:</p>
-            <ul class="about-sales-list">
-                <li>игрушка за 1 рубль</li>
-                <li><span class="about-sales-red-text">акция 19р - 29р - 39р - 49р - 69р.</span></li>
-                <li>акция неделя подарков</li>
-                <li>акция 2 = 1</li>
-                <li><span class="about-sales-red-text">скидка 10% пенсионерам и другие</span></li>
-            </ul>
-            <p class="about-text">С октября 2018 года по апрель 2025 года открыто 520 магазинов в 299 населенных пунктах - от Симферополя до Анадыря. С каждым месяцем МПР становится больше. Открытия новых магазинов сети сопровождаются ШОК-ценами и выгодными акциями, а также шоу, конкурсами и песнями.</p>
-            <p class="about-text">Месторасположение рядом с домом сэкономит время. Кроме того, часто «местом жительства» МПР становятся небольшие поселки. Там, где ситуация с магазинами напряженная, выручит Магазин Постоянных Распродаж. Здесь вы найдете всё необходимое, а бонусом - низкие цены, акции и регулярные распродажи.</p>
-            <div class="about-video-placeholder">Видео</div>
-          </div>
-        </div>
     </div>
     <footer class="site-footer">
         <div class="footer-container">
@@ -302,7 +272,15 @@
           </div>
         </div>
       </footer>
-    
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/catalog-menu.js"></script>
+  
+    <script src="js/modals.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/favorites.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/personal-cabinet-tabs.js"></script>
+    <!-- Модальное окно авторизации -->
     <div class="modal-auth-overlay" id="modalAuthOverlay" style="display:none;"></div>
     <div class="modal-auth" id="modalAuth" style="display:none;">
       <button class="modal-auth-close" id="modalAuthClose" aria-label="Закрыть">×</button>
@@ -430,12 +408,5 @@
         </div>
       </div>
     </div>
-    
-    <script src="js/mobile-menu.js"></script>
-    <script src="js/catalog-menu.js"></script>
-    <script src="js/modals.js"></script>
-    <script src="js/login.js"></script>
-    <script src="js/favorites.js"></script>
-    <script src="js/cart.js"></script>
 </body>
 </html>
