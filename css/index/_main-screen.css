@@ -1,5 +1,4 @@
 .main-screen {
-
   width: 100%;
   position: relative;
   display: flex;
@@ -73,8 +72,6 @@
   z-index: 1;
 }
 
-
-
 .main-slide-overlay {
   position: relative;
   z-index: 2;
@@ -85,6 +82,13 @@
   height: 100%;
   width: 100%;
   text-align: center;
+}
+
+.main_video_site {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 @media (max-width: 768px) {
