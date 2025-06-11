@@ -92,6 +92,10 @@
   .footer-menu li:hover {
     color: #EB222D;
   }
+  .footer-menu li a {
+    text-decoration: none;
+    color: inherit;
+  }
   .footer-col-right {
     flex: 1 1 0;
     min-width: 320px;

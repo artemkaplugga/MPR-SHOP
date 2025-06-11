@@ -15,7 +15,11 @@
     transition: box-shadow 0.2s, border 0.2s, min-height 0.25s, padding-bottom 0.25s;
 }
 
-
+.special-card-link,
+.sport-card-link {
+    text-decoration: none;
+    color: inherit;
+}
 
 @media (max-width: 1200px) {
     .catalog-products-grid2 {

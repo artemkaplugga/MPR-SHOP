@@ -243,9 +243,16 @@
           <div class="stocks-catalog-col">
             <button class="product-catalog-btn" id="catalogMenuBtn"><span class="product-catalog-btn__icon">☰</span> Каталог</button>
           </div>
+        
           <div class="stocks-content-col">
             <span class="stocks-breadcrumbs">О магазине</span>
+            
             <h1 class="stocks-title">О магазине</h1>
+           
+            <model-viewer src="videos/ImageToStl.com_forgltf.gltf" alt="logo" auto-rotate camera-controls
+                    style="background-color: transparent;" shadow-intensity="0"
+                    environment-image="neutral"></model-viewer>
+                 
             <p class="about-text"><b>МПР – Магазин Постоянных Распродаж реализует товары для дома и дачи</b></p>
             <p class="about-text">Это федеральная франчайзинговая сеть розничных магазинов самообслуживания, в которой представлено 5000 наименований товаров по низким ценам.</p>
             <p class="about-text">Каждый человек хочет купить дешевле. С помощью МПР это возможно. Регулярные распродажи и яркие акции не оставят равнодушными. МПР станет верным другом и помощником для каждого члена семьи. Большой выбор хозяйственных товаров, бытовой техники, посуды, товаров для спорта и отдыха приятно удивят наших покупательниц. Для мужчин в наличии ассортимент инструментов, авто и сантехники. А самых маленьких покупателей порадуют игрушки, развивающие игры и товары для школы. МПР помогает сделать покупки необходимых в быту вещей доступными.</p>
@@ -259,7 +266,12 @@
             </ul>
             <p class="about-text">С октября 2018 года по апрель 2025 года открыто 520 магазинов в 299 населенных пунктах - от Симферополя до Анадыря. С каждым месяцем МПР становится больше. Открытия новых магазинов сети сопровождаются ШОК-ценами и выгодными акциями, а также шоу, конкурсами и песнями.</p>
             <p class="about-text">Месторасположение рядом с домом сэкономит время. Кроме того, часто «местом жительства» МПР становятся небольшие поселки. Там, где ситуация с магазинами напряженная, выручит Магазин Постоянных Распродаж. Здесь вы найдете всё необходимое, а бонусом - низкие цены, акции и регулярные распродажи.</p>
-            <div class="about-video-placeholder">Видео</div>
+            <div class="about-video-placeholder">
+                <video controls preload="metadata" style="width: 100%; height: 100%; border-radius: 12px;">
+                    <source src="videos/MPR-3MBIT.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает тег video.
+                </video>
+            </div>
           </div>
         </div>
     </div>
@@ -431,6 +443,7 @@
       </div>
     </div>
     
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script> 
     <script src="js/mobile-menu.js"></script>
     <script src="js/catalog-menu.js"></script>
     <script src="js/modals.js"></script>

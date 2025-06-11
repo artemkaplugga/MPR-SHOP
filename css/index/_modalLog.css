@@ -121,7 +121,7 @@
 }
 
 .modal-auth-bottom-text .modal-auth-register {
-color: #888;
+color: black;
   cursor: pointer;
   transition: color 0.15s;
   text-decoration: none;

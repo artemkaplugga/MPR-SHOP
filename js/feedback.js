@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
       reviews.push(review);
       localStorage.setItem('reviews', JSON.stringify(reviews));
 
-      alert("Спасибо за отзыв!");
-      closeReviewModal(); // Close the modal on successful submission
+          alert("Спасибо за отзыв!");
+          closeReviewModal(); // Close the modal on successful submission
       loadReviews(); // Load updated reviews
 
       // Clear the form
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (commentInput) commentInput.value = '';
       if (anonymousCheckbox) anonymousCheckbox.checked = false;
       if (termsCheckbox) termsCheckbox.checked = false;
-      document.querySelectorAll('.star').forEach(s => s.classList.remove('selected'));
+          document.querySelectorAll('.star').forEach(s => s.classList.remove('selected'));
       selectedRating = null; // Reset selected rating
     });
   }
@@ -89,37 +89,37 @@ document.addEventListener('DOMContentLoaded', function() {
   function loadReviews() {
     // Fetch reviews from localStorage instead of /api/reviews
     const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    const container = document.getElementById('reviews-container');
+        const container = document.getElementById('reviews-container');
     const reviewCountElement = document.querySelector('.product-reviews-count');
 
-    if (!container) return;
+        if (!container) return;
 
-    // Update the review count
-    if (reviewCountElement) {
-      reviewCountElement.textContent = `${reviews.length} отзывов`;
-    }
+        // Update the review count
+        if (reviewCountElement) {
+          reviewCountElement.textContent = `${reviews.length} отзывов`;
+        }
 
-    container.innerHTML = '';
+        container.innerHTML = '';
 
-    if (reviews.length === 0) {
-      container.innerHTML = '<p class="no-reviews">Нет отзывов. Будьте первым!</p>';
-      return;
-    }
+        if (reviews.length === 0) {
+          container.innerHTML = '<p class="no-reviews">Нет отзывов. Будьте первым!</p>';
+          return;
+        }
 
-    reviews.forEach(review => {
-      const card = document.createElement('div');
-      card.className = 'review-card';
+        reviews.forEach(review => {
+          const card = document.createElement('div');
+          card.className = 'review-card';
 
       // Display "Анонимно" if anonymous is true
       const displayName = review.anonymous ? 'Анонимно' : review.name;
 
-      card.innerHTML = `
+          card.innerHTML = `
         <div class="review-header">${displayName}</div>
-        <div class="review-rating">Рейтинг: ${review.rating}/5</div>
-        <div class="review-comment">${review.comment}</div>
-      `;
-      container.appendChild(card);
-    });
+            <div class="review-rating">Рейтинг: ${review.rating}/5</div>
+            <div class="review-comment">${review.comment}</div>
+          `;
+          container.appendChild(card);
+      });
   }
 
   // При загрузке страницы — загружаем отзывы
