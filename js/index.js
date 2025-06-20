@@ -168,7 +168,7 @@ const catalogBannerSwiper = new Swiper('.catalog-banner-swiper', {
     768: {
        slidesPerView: 1,
        loop: true,
-    },
+    },з
   },
   autoplay: {
     delay: 2000,
@@ -188,3 +188,4 @@ likeButtons.forEach(button => {
     }
   });
 });
+

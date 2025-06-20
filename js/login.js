@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="profile-greeting">
                         Привет, ${currentUser.name} ${currentUser.surname}!
                     </div>
-                `;
+                `;з
                 userGreetingContainer.style.display = 'block';
             }
             // Hide modal auth if currently open

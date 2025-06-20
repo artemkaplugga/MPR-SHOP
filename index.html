@@ -127,7 +127,7 @@
 
         <div class="mobile-menu-section">
 
-        </div>
+        </div>p
 
       </div>
     </div>
@@ -2181,6 +2181,13 @@
         <input type="email" class="subscribe-input" placeholder="Email" required>
         <button type="submit" class="subscribe-btn">Отправить</button>
       </form>
+      <script>
+        document.querySelector('.subscribe-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Заявка отправлена');
+          this.reset();
+        });
+      </script>
     </section>
     <hr class="section-divider">
 

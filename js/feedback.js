@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       if (!selectedRating) {
-        alert("Пожалуйста, поставьте оценку");
+        alert("Пожалуйста, поставьте оценку");з
         return;
       }
 
