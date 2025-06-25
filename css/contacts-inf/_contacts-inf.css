@@ -72,19 +72,7 @@
 .contacts-socials img:hover {
   opacity: 1;
 }
-.contacts-description-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 32px;
-  margin-top: 18px;
-}
-.contacts-description {
-  font-size: 17px;
-  color: #222;
-  line-height: 1.4;
-  margin-top: 0;
-  max-width: 420px;
-}
+
 .contacts-photo-block {
   width: 350px;
   border-radius: 16px;
