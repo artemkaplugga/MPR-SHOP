@@ -740,23 +740,23 @@ document.addEventListener('DOMContentLoaded', function () {
       pageButtons.forEach(b => b.classList.remove('catalog-pagination__page--active'));
       this.classList.add('catalog-pagination__page--active');
       productsList.innerHTML = pages[idx];
+
+      attachSpecialCardListeners();
     });
   });
-}); 
 
-
-
+ 
+  function attachSpecialCardListeners() {
     document.querySelectorAll('.special-card').forEach(card => {
       const img = card.querySelector('.special-card__img');
       const title = card.querySelector('.special-card__title');
       const art = card.querySelector('.special-card__art');
       const price = card.querySelector('.special-card__price');
-  
+
       const goToProduct = () => {
         window.location.href = 'product.html';
       };
-  
-      // Навешиваем переход на нужные элементы
+
       [img, title, art, price].forEach(el => {
         if (el) {
           el.style.cursor = 'pointer';
@@ -764,4 +764,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     });
- 
+  }
+
+  attachSpecialCardListeners();
+}); 
+    

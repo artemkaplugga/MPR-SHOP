@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 name,
                 surname,
                 phone,
-                email,p
+                email,
                 city,
                 dob,
                 password, // In a real application, you would hash the password
